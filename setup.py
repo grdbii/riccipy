@@ -10,10 +10,10 @@ setup(
     description='A tensor algebra calculator for General Relativity',
     long_description=long_description,
     url='https://github.com/cjayross/riccipy',
-    download_url='https://github.com/cjayross/riccipy/archive/v0.1-alpha.tar.gz',
+    download_url='https://github.com/cjayross/riccipy/archive/v0.1a0.tar.gz',
     license='MIT',
     version='v0.1-alpha',
-    packages=['riccipy',],
+    packages=['riccipy', 'riccipy.metrics', 'riccipy.tests'],
     install_requires=open('requirements.txt').read().split('\n')[:-1],
     keywords='general relativity physics math cas',
     classifiers=[
