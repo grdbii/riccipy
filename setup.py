@@ -14,7 +14,7 @@ setup(
     license='MIT',
     version='v0.1-alpha',
     packages=['riccipy',],
-    install_requires=['numpy', 'sympy'],
+    install_requires=open('requirements.txt').read().split('\n')[:-1],
     keywords='general relativity physics math cas',
     classifiers=[
         'License :: OSI Approved :: MIT License',
@@ -27,5 +27,6 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
     ],
 )
