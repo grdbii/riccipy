@@ -1,6 +1,6 @@
 from distutils.core import setup
 
-long_description = """RicciPy is a Python tensor algebra engine for
+long_description = """RicciPy is a Python tensor algebra calculator for
 symbolically manipulating exact solutions to the Einstein Field Equations."""
 
 setup(
