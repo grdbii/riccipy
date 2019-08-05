@@ -1,5 +1,7 @@
 """
-Minkowski space in polar coordinates
+Name: Minkowski
+Coordinates: Spherical
+Symmetry: Maximal
 """
 from sympy import diag, sin, symbols
 

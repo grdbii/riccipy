@@ -1,7 +1,12 @@
 """
-Schwarzschild exterior metric in curvature coordinates
-Schwarzschild, Sitz. Preuss. Akad. Wiss., p189, (1916)
-Stephani (13.19) p157
+Name: Schwarzschild
+References:
+    - Schwarzschild, Sitz. Preuss. Akad. Wiss., p189, (1916)
+    - Stephani (13.19) p157
+Coordinates: Spherical
+Symmetry:
+    - Spherical
+    - Static
 """
 from sympy import diag, sin, symbols
 

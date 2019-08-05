@@ -1,7 +1,9 @@
 """
-Godel metric
-Rev. Mod. Phys., v21, p447, (1949)
-Stephani (10.25) 122
+Name: Godel
+References:
+    - Rev. Mod. Phys., v21, p447, (1949)
+    - Stephani (10.25) 122
+Coordinates: Cartesian
 """
 from sympy import Rational, diag, exp, sqrt, symbols
 

@@ -1,7 +1,10 @@
 """
-Ellis and MacCallum Bianchi VIo vacuum solution
-Ellis et al., Commun. Math. Phys., v12, p108, (1969)
-Stephani (11.56) p136
+Name: Ellis and MacCallum Vacuum
+References:
+    - Ellis et al., Commun. Math. Phys., v12, p108, (1969)
+    - Stephani (11.56) p136
+Coordinates: Cartesian
+Notes: Bianchi VIo
 """
 from sympy import diag, exp, sqrt, symbols
 

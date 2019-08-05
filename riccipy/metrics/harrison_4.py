@@ -1,7 +1,12 @@
 """
-Harrison III-7(b) Petrov type D, Kinnersley class IV.B (C=1/2)
-Harrison, Phys. Rev., v116, p1285, (1959)
-d'Inverno et al., J. Math. Phys., v12, p1258, (1971)
+Name: Harrison
+References:
+    - Harrison, Phys. Rev., v116, p1285, (1959)
+    - d'Inverno et al., J. Math. Phys., v12, p1258, (1971)
+Notes:
+    - Kinnersley Class IV.B
+    - C = 1/2
+    - Hyperbolic Cosine
 """
 from sympy import cosh, diag, symbols
 

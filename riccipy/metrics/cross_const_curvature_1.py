@@ -1,6 +1,9 @@
 """
-Cross product of two 2-dimensional subspaces of constant curvature
-Stephani (10.8) p118
+Name: Cross product of Constant Curvature Subspaces
+References: Stephani (10.8) p118
+Notes:
+    - Temporal Sine
+    - Spatial Sine
 """
 from sympy import diag, sin, symbols
 

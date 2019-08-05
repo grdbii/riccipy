@@ -1,6 +1,8 @@
 """
-Tolman's type IV solution
-Tolman, Phys. Rev., v55, p363-373, (1939)
+Name: Tolman
+References: Tolman, Phys. Rev., v55, p363-373, (1939)
+Coordinates: Spherical
+Notes: Type IV
 """
 from sympy import diag, sin, symbols
 

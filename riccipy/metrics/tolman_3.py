@@ -1,6 +1,11 @@
 """
-Tolman's type VII static spherically symmetric perfect fluid solution
-Tolman, Phys. Rev., v55, p363-373, (1939)
+Name: Tolman Perfect Fluid
+Reference: Tolman, Phys. Rev., v55, p363-373, (1939)
+Coordinates: Spherical
+Symmetry:
+    - Spherical
+    - Static
+Notes: Type VII
 """
 from sympy import Rational, diag, log, sin, sqrt, symbols
 

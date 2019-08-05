@@ -1,6 +1,7 @@
 """
-Nariai vacuum metric
-Nariai, Sci. Rep. Tohoku Univ., v35, p62, (1951)
+Name: Nariai Vacuum
+References: Nariai, Sci. Rep. Tohoku Univ., v35, p62, (1951)
+Coordinates: Cartesian
 """
 from sympy import Function, cos, diag, log, sin, sqrt, symbols
 

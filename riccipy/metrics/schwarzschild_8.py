@@ -1,5 +1,10 @@
 """
-Schwarzschild interior solution in curvature coordinates
+Name: Schwarzschild
+Coordinates: Spherical
+Symmetry:
+    - Spherical
+    - Static
+Notes: Interior
 """
 from sympy import diag, sin, sqrt, symbols
 

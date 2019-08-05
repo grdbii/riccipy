@@ -1,5 +1,10 @@
 """
-Schwarzschild metric as the rho->0 limit of Tolman-Bondi dust
+Name: Schwarzschild
+Coordinates: Spherical
+Symmetry:
+    - Spherical
+    - Static
+Notes: Tolman-Bondi Dust Limiting Case
 """
 from sympy import Rational, diag, sin, symbols
 

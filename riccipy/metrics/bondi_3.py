@@ -1,6 +1,6 @@
 """
-The Bondi metric
-Bondi, Proc. Roy. Soc. Lond. A, v269, p21, (1962)
+Name: Bondi
+References: Bondi, Proc. Roy. Soc. Lond. A, v269, p21, (1962)
 """
 from sympy import Function, exp, sin, symbols, zeros
 

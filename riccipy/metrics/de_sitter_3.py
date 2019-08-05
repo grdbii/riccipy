@@ -1,5 +1,9 @@
 """
-de Sitter space with a non-zero cosmological constant
+Name: de Sitter space
+References: Hawking and Ellis p125
+Coordinates: Spherical
+Symmetry: Maximal
+Notes: Cosmological Constant
 """
 from sympy import diag, sin, symbols
 

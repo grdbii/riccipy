@@ -1,6 +1,9 @@
 """
-Levi-Civita solution, Class AI. Aka the exterior Schwarzschild metric.
-Stephani (Table 16.2) p188
+Name: Levi-Civita
+References: Stephani (Table 16.2) p188
+Coordinates: Spherical
+Symmetry: Spherical
+Notes: Class A1
 """
 from sympy import diag, sin, symbols
 

@@ -1,11 +1,13 @@
 """
-The Bertotti-Robinson solution
-Bertotti, Phys. Rev., v116, p1331, (1959)
-Lovelock, Commun. Math. Phys., v5, p257, (1967)
-Dolan, Commun. Math. Phys., v9, p161, (1968)
-Stephani (10.18) p121
+Name: Bertotti-Robinson
+References:
+    - Bertotti, Phys. Rev., v116, p1331, (1959)
+    - Lovelock, Commun. Math. Phys., v5, p257, (1967)
+    - Dolan, Commun. Math. Phys., v9, p161, (1968)
+    - Stephani (10.18) p121
+Coordinates: Spherical
 """
-from sympy import diag, symbols
+from sympy import diag, sin, symbols
 
 coords = symbols('t r theta phi', real=True)
 variables = symbols('q', constant=True)

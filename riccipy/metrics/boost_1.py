@@ -1,12 +1,13 @@
 """
-Metric with G4 on T3 and boost isotropy (flat case, k=0)
-Stephani (11.16) p128
+Name: Flat Boost Isotropy
+References: Stephani (11.16) p128
+Symmetry: Boost Rotation
 """
 from sympy import Function, diag, symbols
 
-coords = symbols('t x y w', real=True)
+coords = symbols('t w x y', real=True)
 variables = ()
 functions = symbols('alpha beta', cls=Function)
-t, x, y, w = coords
+t, w, x, y = coords
 al, be = functions
-metric = diag(-be(w) ** 2 * y ** 2, al(w) ** 2, be(w) ** 2, 1)
+metric = diag(-be(w) ** 2 * y ** 2, 1, al(w) ** 2, be(w) ** 2)

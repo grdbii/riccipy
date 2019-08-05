@@ -1,8 +1,10 @@
 """
-Closed Friedman-Robertson-Walker metric. Dust
-Landau-Lifshitz (112.4), (112.9), (112.10)
-Stephani (12.3a) p122
-Hawking and Ellis ch5.3
+Name: Friedman-Robertson-Walker Dust
+References:
+    - Landau-Lifshitz (112.4), (112.9), (112.10)
+    - Stephani (12.3a) p122
+    - Hawking and Ellis ch5.3
+Notes: Closed
 """
 from sympy import cos, diag, sin, symbols
 

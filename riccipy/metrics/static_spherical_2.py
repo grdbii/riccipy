@@ -1,6 +1,11 @@
 """
-General static, spherically symmetric metric in curvature coordinates
-Stephani (14.1) p163
+Name: Generic Static Spherical
+References: Stephani (14.1) p163
+Coordinates: Spherical
+Symmetry:
+    - Spherical
+    - Static
+Notes: Additional exponential factors
 """
 from sympy import Function, diag, exp, sin, symbols
 

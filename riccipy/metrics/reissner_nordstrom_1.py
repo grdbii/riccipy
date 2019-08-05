@@ -1,7 +1,10 @@
 """
-Reissner-Nordstrom spherically symmetric electro-vacuum solution
-Reissner, Ann. Phys., v50, p106, (1916)
-Stephani (13.21) p158
+Name: Reissner-Nordstrom Electro-Vacuum
+References:
+    - Reissner, Ann. Phys., v50, p106, (1916)
+    - Stephani (13.21) p158
+Coordinates: Spherical
+Symmetry: Spherical
 """
 from sympy import diag, sin, symbols
 

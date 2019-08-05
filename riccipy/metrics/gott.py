@@ -1,6 +1,7 @@
 """
-Gott's interior solution for a cosmic string.
-Gott, Astrophys. J., v288, p422-427, (1985)
+Name: Gott Interior Cosmic String
+References: Gott, Astrophys. J., v288, p422-427, (1985)
+Coordinates: Cylindrical
 """
 from sympy import diag, sin, symbols
 

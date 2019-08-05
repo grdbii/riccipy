@@ -1,6 +1,11 @@
 """
-Durgapal's static spherically symmetric perfect fluid with n=5
-Durgapal, J. Phys. A, v15, p2637-2644, (1982)
+Name: Durgapal
+References: Durgapal, J. Phys. A, v15, p2637-2644, (1982)
+Coordinates: Spherical
+Symmetry:
+    - Spherical
+    - Static
+Notes: n = 5
 """
 from sympy import Rational, sin, symbols, zeros
 

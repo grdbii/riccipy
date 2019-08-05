@@ -1,5 +1,6 @@
 """
-General metric from Bianchi II automorphisms
+Name: Bianchi II
+Coordinates: Cartesian
 """
 from sympy import Function, diag, exp, symbols
 

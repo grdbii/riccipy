@@ -1,5 +1,8 @@
 """
-Kottler's generalization of the Schwarzschild metric with non-zero cosmological constant. Aka Schwarzschild-de Sitter.
+Name: Schwarzschild-de Sitter
+Coordinates: Spherical
+Symmetry: Spherical
+Notes: Cosmological Constant
 """
 from sympy import diag, sin, symbols
 

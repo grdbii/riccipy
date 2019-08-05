@@ -1,6 +1,9 @@
 """
-Spherical Bondi metric in advanced (ingoing) coordinates
-Bondi, Proc. Roy. Soc. Lond. A, v282, p303, (1964)
+Name: Bondi
+References: Bondi, Proc. Roy. Soc. Lond. A, v282, p303, (1964)
+Coordinates: Spherical
+Symmetry: Spherical
+Notes: Ingoing Coordinates
 """
 from sympy import Function, diag, sin, symbols
 

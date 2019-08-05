@@ -1,5 +1,7 @@
 """
-Minkowski space in Cartesian coordinates
+Name: Minkowski
+Coordinates: Cartesian
+Symmetry: Maximal
 """
 from sympy import diag, symbols
 

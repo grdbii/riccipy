@@ -1,7 +1,11 @@
 """
-Reissner-Nordstrom spherically symmetric electro-vacuum solution with non-zero cosmological constant
-Reissner, Ann. Phys., v50, p106, (1916)
-Stephani (Table 13.1) p157
+Name: Reissner-Nordstrom Electro-Vacuum
+References:
+    - Reissner, Ann. Phys., v50, p106, (1916)
+    - Stephani (Table 13.1) p157
+Coordinates: Spherical
+Symmetry: Spherical
+Notes: Cosmological Constant
 """
 from sympy import diag, sin, symbols
 

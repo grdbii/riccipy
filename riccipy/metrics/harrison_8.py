@@ -1,7 +1,11 @@
 """
-Harrison III-9(c) Petrov type D, Kinnersley class II.D (a=l=0)
-Harrison, Phys. Rev., v116, p1285, (1959)
-d'Inverno et al., J. Math. Phys., v12, p1258, (1971)
+Name: Harrison
+References:
+    - Harrison, Phys. Rev., v116, p1285, (1959)
+    - d'Inverno et al., J. Math. Phys., v12, p1258, (1971)
+Notes:
+    - Kinnersley Class II.D
+    - a = l = 0
 """
 from sympy import diag, exp, symbols
 

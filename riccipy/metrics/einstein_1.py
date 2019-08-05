@@ -1,6 +1,8 @@
 """
-Einstein's static universe. Cartesian coordinates
-Stephani (10.23a) p122
+Name: Einstein
+References: Stephani (10.23a) p122
+Coordinates: Cartesian
+Symmetry: Static
 """
 from sympy import diag, sqrt, symbols
 

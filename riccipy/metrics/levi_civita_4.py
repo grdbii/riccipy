@@ -1,6 +1,9 @@
 """
-Levi-Civita solution, Class BI
-Stephani (Table 16.2) p188
+Name: Levi-Civita
+References: Stephani (Table 16.2) p188
+Coordinates: Spherical
+Symmetry: Spherical
+Notes: Class B1
 """
 from sympy import diag, sin, symbols
 
