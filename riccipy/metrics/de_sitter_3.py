@@ -1,5 +1,5 @@
 """
-Name: de Sitter space
+Name: de Sitter
 References: Hawking and Ellis p125
 Coordinates: Spherical
 Symmetry: Maximal

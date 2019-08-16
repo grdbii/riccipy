@@ -1,6 +1,6 @@
 """
 Name: Minkowski
-Coordinates: Null
+Coordinates: 'Null'
 Symmetry: Maximal
 """
 from sympy import Rational, sin, symbols, zeros

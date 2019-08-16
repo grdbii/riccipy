@@ -254,9 +254,9 @@ class SpacetimeMetric(Metric):
         return tuple(sig)
 
 
-def load_metric(symbol, name):
-    base = Path(__file__).parent
-    var = dict(globals(), **locals())
-    with open(base / 'metrics' / (name + '.py'), 'r') as file:
-        exec(file.read(), var)
-        return SpacetimeMetric(symbol, var['coords'], var['metric'], timelike=False)
+def load_metric(symbol, name, coords=None, notes=None):
+    from .metrics import data
+    spacetime = data(name, coords=coords, notes=notes)
+    if isinstance(spacetime, list):
+        spacetime = spacetime[0]
+    return SpacetimeMetric(symbol, spacetime['coords'], spacetime['metric'], timelike=False)
