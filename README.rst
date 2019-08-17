@@ -12,18 +12,22 @@ A tensor algebra calculator for General Relativity.
 Usage
 -----
 
-RicciPy makes extensive usage of ``sympy`` for managing tensor products and
-contractions. To create a tensor, it is required to construct a means of
-representing the components of the tensor. This can be done by using most
-nested array types: a nested python list, a ``sympy.Array`` or ``sympy.Matrix``
-instance, or a numpy array will work.
+.. _sympy: https://github.com/sympy/sympy
+.. _numpy: https://github.com/numpy/numpy
 
-Before beginning any involved application, however, it is first necessary to
-define a ``Metric`` instance so that indices can be appropriately raised and
-lowered automatically.
+RicciPy makes extensive usage of sympy_ for managing tensor products and
+contractions. To create a tensor, it is required to construct an array to
+represent the components of the tensor. This can be done by using most
+nested array types: a nested ``list``, a ``sympy.Array`` instance, a
+``sympy.Matrix`` instance, or a numpy_ array will work.
 
-In the following example, the electromagnetic tensor is used in a simple
-calculation in a Minkowski spacetime:
+Before beginning any involved application, it is first necessary to define a
+``Metric`` instance so that indices can be appropriately raised and lowered
+automatically.
+
+In the following example, the electromagnetic tensor is defined in a Minkowski
+spacetime. To begin, we declare the components of the electromagnetic tensor
+using sympy for representing variables:
 
 .. code-block:: python
 
@@ -37,11 +41,10 @@ calculation in a Minkowski spacetime:
             [E3, -B2, B1, 0]]
   >>> t, x, y, z = symbols('t x y z')
 
-In the following the Minkowski metric is defined along with the ``Tensor``
-object for the electromagnetic tensor using ``em`` for the components. Here,
-the ``symmetry`` keyword in the constructor for the ``Tensor`` object is
-optional but is used here to declare the tensor as being antisymmetric
-(refer to sympy's documentation for the ``sympy.tensor.tensor`` module).
+Next, the Minkowski metric is defined along with the ``Tensor`` object for the
+electromagnetic tensor. Here, the ``symmetry`` keyword is optional but is used
+to declare the electromagnetic tensor as being antisymmetric (refer to sympy's
+documentation for the ``sympy.tensor.tensor`` module).
 
 .. code-block:: python
 
@@ -54,7 +57,7 @@ indices of either the metric, ``eta``, or the tensor ``F``. Negative signs
 indicate that the particular index is a subscript (covariant) rather than
 a superscript (contravariant).
 
-This first calculation demonstrates how contractions are handled---simply
+This first calculation demonstrates how contractions are handled: simply
 multiply two indexed tensors and matching indices will automatically apply
 the Einstein summation convention. Symbolically, indices that are to be
 contracted are denoted by the metric those indices belong to (in this case
@@ -71,8 +74,8 @@ to ``expand_array``.
   >>> expand_array(expr)
   2*B_1**2 + 2*B_2**2 + 2*B_3**2 - 2*E_1**2 - 2*E_2**2 - 2*E_3**2
 
-This next calculation tested here demonstrates the consequence of having
-defined ``F`` as being antisymmetric.
+This next calculation demonstrates the consequence of having defined ``F`` as
+being antisymmetric:
 
 .. code-block:: python
 
@@ -84,17 +87,22 @@ Metrics Database
 ****************
 
 RicciPy comes with over 100 different metrics representing solutions to the
-Einstein Field Equations. They currently can be viewed in the
-``riccipy/metrics`` directory of the source, however, development is underway
-to make searching these metrics easier. For the time being, the ``load_metric``
-function can be used to automatically return a ``Metric`` instance of the
-specified metric.
-
-For example, to load an Anti de-Sitter spacetime, the call would look like:
+Einstein Field Equations. To search for metrics, you can use the ``find``
+function:
 
 .. code-block:: python
 
-   >>> g = load_metric('g', 'anti_de_sitter_1')
+   >>> from riccipy.metrics import find
+   >>> find('sitter')
+   ['anti-de sitter', 'de sitter', 'schwarzschild-de sitter']
+
+The ``load_metric`` function can be used to automatically return a ``Metric``
+instance of the specified metric. For example, to load an Anti de-Sitter
+spacetime the call would look like:
+
+.. code-block:: python
+
+   >>> g = load_metric('g', 'anti-de sitter')
    >>> g.as_array()
    [[-1, 0, 0, 0],
    [0, cos(t)**2, 0, 0],
