@@ -1,7 +1,10 @@
 """
-Tariq and Tupper metric admitting a G3VIo on S3
-Tariq et al., Gen. Rel. Grav., v6, p345, (1975)
-Stephani (11.64) p138
+Name: Tariq and Tupper
+References:
+    - Tariq et al., Gen. Rel. Grav., v6, p345, (1975)
+    - Stephani (11.64) p138
+Coordinates: Cartesian
+Notes: Admits G3VIo on S3
 """
 from sympy import diag, exp, symbols
 

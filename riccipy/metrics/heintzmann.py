@@ -1,6 +1,10 @@
 """
-Heintzmann's static spherically symmetric perfect fluid solution
-Heintzmann, Z. Phys., v228, p489-493, (1969)
+Name: Heintzmann Perfect Fluid
+References: Heintzmann, Z. Phys., v228, p489-493, (1969)
+Coordinates: Spherical
+Symmetry:
+    - Spherical
+    - Static
 """
 from sympy import diag, sin, symbols
 

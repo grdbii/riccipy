@@ -1,6 +1,8 @@
 """
-Taub's plane symmetric vacuum solution
-Taub, Ann. Math., v53, p473, (1951)
+Name: Taub Vacuum
+References: Taub, Ann. Math., v53, p473, (1951)
+Coordinates: Cartesian
+Symmetry: Planar
 """
 from sympy import diag, sqrt, symbols
 

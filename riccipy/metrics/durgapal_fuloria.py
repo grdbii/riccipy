@@ -1,6 +1,10 @@
 """
-Durgapal and Fuloria's static spherically symmetric perfect fluid
-Durgapal et al., Gen. Rel. Grav., v17, p671-681, (1985)
+Name: Durgapal and Fuloria Perfect Fluid
+References: Durgapal et al., Gen. Rel. Grav., v17, p671-681, (1985)
+Coordinates: Spherical
+Symmetry:
+    - Spherical
+    - Static
 """
 from sympy import diag, sin, symbols
 

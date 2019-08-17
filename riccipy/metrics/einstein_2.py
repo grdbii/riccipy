@@ -1,6 +1,8 @@
 """
-Einstein's static universe. Polar coordinates
-Stephani (10.23b) p122
+Name: Einstein
+References: Stephani (10.23a) p122
+Coordinates: Polar
+Symmetry: Static
 """
 from sympy import diag, sin, symbols
 

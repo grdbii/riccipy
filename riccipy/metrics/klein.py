@@ -1,5 +1,9 @@
 """
-Klein's static spherically symmetric radiation perfect fluid solution
+Name: Klein Radiation Perfect Fluid
+Coordinates: Spherical
+Symmetry:
+    - Spherical
+    - Static
 """
 from sympy import Rational, diag, sin, sqrt, symbols
 

@@ -1,6 +1,7 @@
 """
-Anti-de Sitter space
-Hawking and Ellis (5.9) p131
+Name: Anti-de Sitter
+References: Hawking and Ellis (5.9) p131
+Symmetry: Maximal
 """
 from sympy import cos, diag, sin, sinh, symbols
 

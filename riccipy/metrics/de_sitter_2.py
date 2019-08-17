@@ -1,6 +1,8 @@
 """
-de Sitter space
-Hawking and Ellis p125
+Name: de Sitter
+References: Hawking and Ellis p125
+Coordinates: Cartesian
+Symmetry: Maximal
 """
 from sympy import diag, exp, symbols
 

@@ -1,7 +1,9 @@
 """
-McVittie's plane Einstein-Maxwell field with Lambda=0
-McVittie, Prog. Roy. Soc. Lond., v124, p366, (1929)
-Stephani (13.26) p158
+Name: McVittie Einstein-Maxwell Field
+References:
+    - McVittie, Prog. Roy. Soc. Lond., v124, p366, (1929)
+    - Stephani (13.26) p158
+Coordinates: Cartesian
 """
 from sympy import diag, symbols
 

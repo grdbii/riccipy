@@ -1,8 +1,14 @@
 """
-Schwarzschild metric in ingoing Eddington-Finkelstein coordinates
-Eddington, Nature, v113, p192, (1924)
-Finkelstein, Phys. Rev., v110, p965, (1958)
-Stephani (13.23) p158
+Name: Schwarzschild
+References:
+    - Eddington, Nature, v113, p192, (1924)
+    - Finkelstein, Phys. Rev., v110, p965, (1958)
+    - Stephani (13.23) p158
+Coordinates: Eddington-Finkelstein
+Symmetry:
+    - Spherical
+    - Static
+Notes: Ingoing Coordinates
 """
 from sympy import diag, sin, symbols
 

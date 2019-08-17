@@ -1,6 +1,9 @@
 """
-Static form of Anti-de Sitter space
-Hawking and Ellis (5.9) p131
+Name: Anti-de Sitter
+References: Hawking and Ellis (5.9) p131
+Coordinates: Spherical
+Symmetry: Maximal
+Notes: Static
 """
 from sympy import cosh, diag, sin, sinh, symbols
 

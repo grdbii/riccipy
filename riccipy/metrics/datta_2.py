@@ -1,6 +1,10 @@
 """
-Datta's Einstein-Maxwell solution
-Stephani (11.62) p137
+Name: Datta
+References:
+    - Datta, Nuovo Cim., v36, p109
+    - Stephani (11.60) p137
+Coordinates: Cartesian
+Notes: Type 2
 """
 from sympy import diag, symbols
 

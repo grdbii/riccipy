@@ -1,5 +1,6 @@
 """
-Metric for spacetime with domain wall
+Name: Domain Wall
+Coordinates: Cartesian
 """
 from sympy import diag, exp, symbols
 

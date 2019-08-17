@@ -1,5 +1,7 @@
 """
-Kasner power-law vacuum solution. Axisymmetric case
+Name: Kasner Vacuum
+Coordinates: Cartesian
+Symmetry: Axial
 """
 from sympy import Rational, diag, symbols
 

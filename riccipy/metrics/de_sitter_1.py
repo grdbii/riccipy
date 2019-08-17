@@ -1,6 +1,7 @@
 """
-de Sitter space
-Hawking and Ellis p125
+Name: de Sitter
+References: Hawking and Ellis p125
+Symmetry: Maximal
 """
 from sympy import cosh, diag, sin, symbols
 

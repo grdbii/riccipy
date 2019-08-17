@@ -1,6 +1,8 @@
 """
-Einstein's static universe. Curvature coordinates
-Stephani (10.23c) p122
+Name: Einstein
+References: Stephani (10.23a) p122
+Coordinates: Spherical
+Symmetry: Static
 """
 from sympy import diag, sin, symbols
 

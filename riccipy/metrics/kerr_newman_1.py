@@ -1,6 +1,8 @@
 """
-Kerr metric in Cartesian coordinates
-Allen, Gen. Rel. Grav., v26, p21, (1994)
+Name: Kerr Newman
+References: Allen, Gen. Rel. Grav., v26, p21, (1994)
+Coordinates: Cartesian
+Symmetry: Axial
 """
 from sympy import symbols, zeros
 

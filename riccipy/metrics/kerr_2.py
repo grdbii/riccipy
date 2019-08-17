@@ -1,7 +1,10 @@
 """
-Kerr metric in Boyer Lindquist coordinates
-Boyer, J. Math. Phys., v8, p265, (1967)
-Stephani (18.25) p205
+Name: Kerr
+References:
+    - Boyer, J. Math. Phys., v8, p265, (1967)
+    - Stephani (18.25) p205
+Coordinates: Boyer Lindquist
+Symmetry: Axial
 """
 from sympy import cos, sin, symbols, zeros
 

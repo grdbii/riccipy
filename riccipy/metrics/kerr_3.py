@@ -1,5 +1,8 @@
 """
-Kerr metric in outgoing Eddington Finkelstein form
+Name: Kerr
+Coordinates: Eddington Finkelstein
+Symmetry: Axial
+Notes: Outgoing Coordinates
 """
 from sympy import cos, sin, symbols, zeros
 

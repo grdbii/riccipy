@@ -1,6 +1,6 @@
 """
-Koutras-McIntosh metric (no symmetries or invariants)
-Koutras et al., Class. Quantum Grav., v13, pL47, (1996)
+Name: Koutras-McIntosh
+References: Koutras et al., Class. Quantum Grav., v13, pL47, (1996)
 """
 from sympy import Function, symbols, zeros
 

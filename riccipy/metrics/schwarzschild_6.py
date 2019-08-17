@@ -1,5 +1,9 @@
 """
-Schwarzschild exterior metric in Israel coordinates
+Name: Schwarzschild
+Coordinates: Israel
+Symmetry:
+    - Spherical
+    - Static
 """
 from sympy import Rational, diag, sin, symbols
 

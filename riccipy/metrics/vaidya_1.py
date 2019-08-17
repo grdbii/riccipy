@@ -1,6 +1,8 @@
 """
-Vaidya metric in outgoing Eddington-Finkelstein coordinates
-Stephani (13.20) p158
+Name: Vaidya
+References: Stephani (13.20) p158
+Coordinates: Eddington-Finkelstein
+Notes: Outgoing Coordinates
 """
 from sympy import Function, diag, sin, symbols
 

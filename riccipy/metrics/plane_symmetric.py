@@ -1,6 +1,9 @@
 """
-Bianchi I plane symmetric model
-Stephani (13.49) p162
+Name: Bianchi
+References: Stephani (13.49) p162
+Coordinates: Cartesian
+Symmetry: Planar
+Notes: Bianchi I
 """
 from sympy import Function, diag, exp, symbols
 

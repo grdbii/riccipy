@@ -1,6 +1,10 @@
 """
-Beckers, Sinzinkayo, and Demaret solution
-Beckers et al., Phys. Rev. D, v30, p1846, (1984)
+Name: Beckers, Sinzinkayo, and Demaret
+References: Beckers et al., Phys. Rev. D, v30, p1846, (1984)
+Coordinates: Cartesian
+Notes:
+    - k = 1
+    - d = 0
 """
 from sympy import diag, symbols
 

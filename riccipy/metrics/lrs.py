@@ -1,6 +1,7 @@
 """
-LRS stiff perfect fluid cosmological solution with G4 on S3
-Stephani (12.11) p146
+Name: LRS Stiff Perfect Fluid
+References: Stephani (12.11) p146
+Notes: Admits G4 on S3
 """
 from sympy import diag, symbols
 

@@ -1,5 +1,10 @@
 """
-Schwarzschild exterior metric in isotropic coordinates
+Name: Schwarzschild
+Coordinates: Spherical
+Symmetry:
+    - Spherical
+    - Static
+Notes: Isotropic Coordinates
 """
 from sympy import Rational, diag, sin, symbols
 

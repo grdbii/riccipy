@@ -1,6 +1,7 @@
 """
-Szekeres solution for a special stiff perfect fluid
-Szekeres, Commun. Math. Phys., v41, p55, (1975)
+Name: Szekeres Stiff Perfect Fluid
+References: Szekeres, Commun. Math. Phys., v41, p55, (1975)
+Coordinates: Cartesian
 """
 from sympy import cos, diag, symbols
 

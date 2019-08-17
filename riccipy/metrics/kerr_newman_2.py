@@ -1,7 +1,10 @@
 """
-Kerr metric in Boyer Lindquist coordinates
-Newman, J. Math. Phys., v6, p918, (1965)
-Stephani (19.19) p213
+Name: Kerr Newman
+References:
+    - Newman, J. Math. Phys., v6, p918, (1965)
+    - Stephani (19.19) p213
+Coordinates: Boyer Lindquist
+Symmetry: Axial
 """
 from sympy import cos, sin, symbols, zeros
 

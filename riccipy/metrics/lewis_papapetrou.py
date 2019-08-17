@@ -1,6 +1,7 @@
 """
-Lewis Papapetrou metric
-Ernst, Phys. Rev., v167, p1175, (1968)
+Name: Lewis Papapetrou
+References: Ernst, Phys. Rev., v167, p1175, (1968)
+Coordinates: Cartesian
 """
 from sympy import Function, Rational, exp, symbols, zeros
 

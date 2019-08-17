@@ -1,8 +1,11 @@
 """
-Spatially flat Friedman-Robertson-Walker metric. Perfect fluid
-Robertson, Astrophys. J., v82, p284, (1935)
-Robertson, Astrophys. J., v83, p137, (1936)
-Stephani (10.9) p118
+Name: Friedman-Robertson-Walker Perfect Fluid
+References:
+    - Robertson, Astrophys. J., v82, p284, (1935)
+    - Robertson, Astrophys. J., v83, p137, (1936)
+    - Stephani (10.9) p118
+Coordinates: Spherical
+Notes: Flat
 """
 from sympy import Function, diag, sin, symbols
 

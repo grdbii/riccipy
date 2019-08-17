@@ -1,5 +1,6 @@
 """
-General metric from Bianchi IV automorphisms
+Name: Bianchi IV
+Coordinates: Cartesian
 """
 from sympy import Function, diag, exp, symbols
 

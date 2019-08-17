@@ -1,6 +1,8 @@
 """
-Novotny and Horsky plane symmetric vacuum metric
-Novotny et al., Can. J. Phys., v24, p718, (1974)
+Name: Novotny and Horsky Vacuum
+References: Novotny et al., Can. J. Phys., v24, p718, (1974)
+Coordinates: Cartesian
+Symmetry: Planar
 """
 from sympy import Rational, cos, diag, sin, symbols
 

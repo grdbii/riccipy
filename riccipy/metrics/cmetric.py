@@ -1,6 +1,6 @@
 """
-The C-metric
-Stephani (Table 16.2) p188
+Name: C-metric
+References: Stephani (Table 16.2) p188
 """
 from sympy import Function, diag, symbols
 
