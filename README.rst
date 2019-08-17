@@ -54,7 +54,7 @@ indices of either the metric, ``eta``, or the tensor ``F``. Negative signs
 indicate that the particular index is a subscript (covariant) rather than
 a superscript (contravariant).
 
-This first calculation demonstrates how contractions are handled---simply
+This first calculation demonstrates how contractions are handled—simply
 multiply two indexed tensors and matching indices will automatically apply
 the Einstein summation convention. Symbolically, indices that are to be
 contracted are denoted by the metric those indices belong to (in this case
@@ -85,16 +85,22 @@ Metrics Database
 
 RicciPy comes with over 100 different metrics representing solutions to the
 Einstein Field Equations. They currently can be viewed in the
-``riccipy/metrics`` directory of the source, however, development is underway
-to make searching these metrics easier. For the time being, the ``load_metric``
-function can be used to automatically return a ``Metric`` instance of the
-specified metric.
-
-For example, to load an Anti de-Sitter spacetime, the call would look like:
+``riccipy/metrics`` directory. To search for metrics, you can use the ``find``
+command:
 
 .. code-block:: python
 
-   >>> g = load_metric('g', 'anti_de_sitter_1')
+   >>> from riccipy.metrics import find
+   >>> find('sitter')
+   ['anti-de sitter', 'de sitter', 'schwarzschild-de sitter']
+
+The ``load_metric`` function can be used to automatically return a ``Metric``
+instance of the specified metric. For example, to load an Anti de-Sitter
+spacetime, the call would look like:
+
+.. code-block:: python
+
+   >>> g = load_metric('g', 'anti-de sitter')
    >>> g.as_array()
    [[-1, 0, 0, 0],
    [0, cos(t)**2, 0, 0],
