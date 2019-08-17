@@ -10,7 +10,7 @@ def string_list(strlist):
 class MetricData (dict):
     def __init__(self, doc):
         import yaml
-        super().__init__(yaml.safe_load(doc.lower()))
+        super().__init__(yaml.safe_load(doc))
         doc_items = [string_list(val) for val in self.values()]
         self.__doc__ = '\n'.join(doc_items)
 
@@ -20,7 +20,7 @@ metric_data = []
 for module_info in pkgutil.iter_modules(__path__, __name__ + '.'):
     module = __import__(module_info.name, fromlist='dummy')
     if module.__doc__:
-        entry = MetricData(module.__doc__)
+        entry = MetricData(module.__doc__.lower())
         entry['metric'] = module.metric
         entry['coords'] = module.coords
         entry['variables'] = module.variables
