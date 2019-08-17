@@ -3,6 +3,8 @@ from distutils.core import setup
 long_description = """RicciPy is a Python tensor algebra calculator for
 symbolically manipulating exact solutions to the Einstein Field Equations."""
 
+version = '0.1a'
+
 setup(
     name='riccipy',
     author='Calvin Jay Ross',
@@ -10,9 +12,9 @@ setup(
     description='A tensor algebra calculator for General Relativity',
     long_description=long_description,
     url='https://github.com/cjayross/riccipy',
-    download_url='https://github.com/cjayross/riccipy/archive/v0.1a0.tar.gz',
+    download_url='https://github.com/cjayross/riccipy/archive/v' + version + '.tar.gz',
     license='MIT',
-    version='v0.1-alpha',
+    version='v' + version,
     packages=['riccipy', 'riccipy.metrics', 'riccipy.tests'],
     install_requires=open('requirements.txt').read().split('\n')[:-1],
     keywords='general relativity physics math cas',
