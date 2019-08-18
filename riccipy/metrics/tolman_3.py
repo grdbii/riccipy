@@ -1,6 +1,6 @@
 """
 Name: Tolman Perfect Fluid
-Reference: Tolman, Phys. Rev., v55, p363-373, (1939)
+References: Tolman, Phys. Rev., v55, p363-373, (1939)
 Coordinates: Spherical
 Symmetry:
     - Spherical
