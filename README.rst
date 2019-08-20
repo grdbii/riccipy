@@ -32,8 +32,7 @@ using sympy for representing variables:
 .. code-block:: python
 
   >>> from sympy import diag, symbols
-  >>> from einsteinpy.symbolic.tensor import Tensor, indices, expand_array
-  >>> from einsteinpy.symbolic.metric import Metric
+  >>> from riccipy import Tensor, Metric, indices, expand_array
   >>> E1, E2, E3, B1, B2, B3 = symbols('E1:4 B1:4')
   >>> em = [[0, -E1, -E2, -E3],
             [E1, 0, -B3, B2],

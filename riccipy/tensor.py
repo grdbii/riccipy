@@ -142,8 +142,7 @@ class Tensor(AbstractTensor, TensorHead):
         Examples
         --------
         >>> from sympy import diag, symbols
-        >>> from einsteinpy.symbolic.tensor import Tensor, indices, expand_array
-        >>> from einsteinpy.symbolic.metric import Metric
+        >>> from riccipy import Metric, Tensor, indices, expand_array
         >>> E1, E2, E3, B1, B2, B3 = symbols('E1:4 B1:4')
         >>> em = [[0, -E1, -E2, -E3],
                   [E1, 0, -B3, B2],
@@ -218,8 +217,7 @@ class Tensor(AbstractTensor, TensorHead):
         Examples
         --------
         >>> from sympy import diag, symbols, sin
-        >>> from einsteinpy.symbolic.tensor import indices
-        >>> from einsteinpy.symbolic.metric import Metric
+        >>> from riccipy import Metric, indices
         >>> t, r, th, ph = symbols('t r theta phi')
         >>> schwarzschild = diag(1-1/r, -1/(1-1/r), -r**2, -r**2*sin(th)**2)
         >>> g = Metric('g', [t, r, th, ph], schwarzschild)

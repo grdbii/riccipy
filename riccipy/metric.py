@@ -43,8 +43,7 @@ class Metric(AbstractTensor, TensorIndexType):
         Examples
         --------
         >>> from sympy import diag, symbols
-        >>> from einsteinpy.symbolic.tensor import indices, expand_array
-        >>> from einsteinpy.symbolic.metric import Metric
+        >>> from riccipy import Metric, indices, expand_array
         >>> t, x, y, z = symbols('t x y z')
         >>> eta = Metric('eta', [t, x, y, z], diag(1, -1, -1, -1))
         >>> mu, nu = indices('mu nu', eta)
