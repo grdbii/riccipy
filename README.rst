@@ -101,7 +101,7 @@ spacetime the call would look like:
 
 .. code-block:: python
 
-   >>> g = load_metric('g', 'anti-de sitter')
+   >>> g, variables, functions = load_metric('g', 'anti-de sitter')
    >>> g.as_array()
    [[-1, 0, 0, 0],
    [0, cos(t)**2, 0, 0],
