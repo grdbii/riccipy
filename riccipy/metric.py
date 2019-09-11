@@ -78,6 +78,20 @@ class Metric(AbstractTensor, TensorIndexType):
     def __call__(self, *args):
         return self.metric(*args)
 
+    def __getitem__(self, keys):
+        return self.metric.__getitem__(keys)
+
+    def set_variables(self, sub_dict):
+        self.metric.set_variables(sub_dict)
+        self._array = self._array.subs(sub_dict)
+        self._repl[self] = self._array
+        self._christoffel = None
+        self._riemann = None
+        self._ricci_tensor = None
+        self._ricci_scalar = None
+        self._weyl = None
+        self._einstein = None
+
     def density(self, weight=S.One):
         return Pow(abs(self.determinant), Rational(weight, 2))
 
@@ -253,9 +267,14 @@ class SpacetimeMetric(Metric):
         return tuple(sig)
 
 
-def load_metric(symbol, name, coords=None, notes=None):
+def load_metric(symbol, name, coords=None, notes=None, timelike=False):
     from .metrics import data
     spacetime = data(name, coords=coords, notes=notes)
     if isinstance(spacetime, list):
         spacetime = spacetime[0]
-    return SpacetimeMetric(symbol, spacetime['coords'], spacetime['metric'], timelike=False)
+    metric = SpacetimeMetric(symbol, spacetime['coords'], spacetime['metric'], timelike=False)
+    if timelike:
+        metric.reverse_signature()
+    variables = spacetime['variables']
+    functions = spacetime['functions']
+    return (metric, variables, functions)

@@ -172,25 +172,12 @@ class Tensor(AbstractTensor, TensorHead):
                 )
             )
 
-        count = defaultdict(int)
-
-        def dummy_fmt_gen(idxtype):
-            # generate a generic index for the entry in replacement dictionary.
-            fmt = idxtype.dummy_fmt
-            n = count[idxtype]
-            count[idxtype] += 1
-            return fmt % n
-
         obj = TensorHead.__new__(cls, symbol, symtype, comm=comm, **kwargs)
         obj = AbstractTensor.__new__(cls, obj, array)
         # resolves a bug with pretty printing.
         obj.__class__.__name__ = 'TensorHead'
         obj.covar = covar
-        idx_names = map(dummy_fmt_gen, obj.index_types)
-        idx_generator = map(Index, idx_names, obj.index_types)
-        idxs = [
-            idx if covar[pos] > 0 else -idx for pos, idx in enumerate(idx_generator)
-        ]
+        idxs = obj._dummy_idxs()
         obj._repl[obj(*idxs)] = array
         return obj
 
@@ -203,6 +190,31 @@ class Tensor(AbstractTensor, TensorHead):
     def __call__(self, *args, **kwargs):
         new = IndexedTensor(self, args, **kwargs)
         return new.doit()
+
+    def __getitem__(self, keys):
+        return self._array.__getitem__(keys)
+
+    def _dummy_idxs(self):
+        count = defaultdict(int)
+
+        def dummy_fmt_gen(idxtype):
+            # generate a generic index for the entry in replacement dictionary.
+            fmt = idxtype.dummy_fmt
+            n = count[idxtype]
+            count[idxtype] += 1
+            return fmt % n
+
+        idx_names = map(dummy_fmt_gen, self.index_types)
+        idx_generator = map(Index, idx_names, self.index_types)
+        idxs = [
+            idx if self.covar[pos] > 0 else -idx for pos, idx in enumerate(idx_generator)
+        ]
+        return idxs
+
+    def set_variables(self, sub_dict):
+        self._array = self._array.subs(sub_dict)
+        idxs = self._dummy_idxs()
+        self._repl[self(*idxs)] = self._array
 
     def covariance_transform(self, *indices):
         """
