@@ -4,7 +4,7 @@ from pathlib import Path
 from sympy import Array, Pow, Rational, S, ones, tensorproduct, zeros
 from sympy.tensor.tensor import TensorIndexType
 
-from .partial import PartialDerivative
+from .partial import PartialDerivative, CovariantHead
 from .tensor import AbstractTensor, Tensor, expand_array, indices
 
 
@@ -102,6 +102,10 @@ class Metric(AbstractTensor, TensorIndexType):
     @property
     def partial(self):
         return PartialDerivative(self)
+
+    @property
+    def covariant(self):
+        return CovariantHead(self)
 
     @property
     def christoffel(self):

@@ -2,6 +2,7 @@ from collections import defaultdict
 
 from sympy import Array, preorder_traversal, simplify, symbols
 from sympy.core.compatibility import string_types
+from sympy.core.decorators import call_highest_priority
 from sympy.tensor.array import permutedims, tensorcontraction, tensorproduct
 from sympy.tensor.tensor import (
     TensMul,
@@ -89,11 +90,20 @@ class IndexedTensor(AbstractTensor, SympyTensor):
 
     Generated when a Tensor is called as a function with indices as arguments.
     """
+    _op_priority = 10
 
     def __new__(cls, tensor, indices, **kwargs):
         obj = SympyTensor.__new__(cls, tensor, indices, **kwargs)
         array = tensor.covariance_transform(*indices)
         return AbstractTensor.__new__(cls, obj, array)
+
+    @call_highest_priority('__rmul__')
+    def __mul__(self, other):
+        return SympyTensor.__mul__(self, other)
+
+    @call_highest_priority('__mul__')
+    def __rmul__(self, other):
+        return SympyTensor.__rmul__(self, other)
 
 
 class Tensor(AbstractTensor, TensorHead):
