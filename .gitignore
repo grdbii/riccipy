@@ -106,3 +106,4 @@ venv.bak/
 # Tags files
 TAGS
 tags
+.tags
