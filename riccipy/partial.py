@@ -4,17 +4,16 @@ from sympy.core.decorators import call_highest_priority
 from sympy.tensor.tensor import (
     Tensor as SympyTensor,
     TensorHead,
-    TensorType,
+    TensorSymmetry,
     TensMul,
     TensAdd,
-    tensorsymmetry,
 )
 
 from .tensor import Tensor, Index, IndexedTensor
 
 
 class DiffOperator(Expr):
-    _op_priority = 11
+    _op_priority = 12
     is_commutative = False
 
     def __new__(cls, *args, left=S.One):
@@ -66,7 +65,7 @@ class PartialDerivative(Tensor):
 
 
 class IndexedPartial(IndexedTensor):
-    _op_priority = 12
+    _op_priority = 13
 
     @call_highest_priority('__rmul__')
     def __mul__(self, other):
@@ -85,9 +84,8 @@ class CovariantHead(TensorHead):
     is_TensorDerivative = True
 
     def __new__(cls, metric, **kwargs):
-        sym = tensorsymmetry([1])
-        symtype = TensorType([metric], sym)
-        obj = TensorHead.__new__(cls, '\u2207', symtype, comm='partial')
+        sym = TensorSymmetry.fully_symmetric(1)
+        obj = TensorHead.__new__(cls, '\u2207', [metric], sym, comm='partial')
         return obj
 
     def __call__(self, idx):
@@ -95,7 +93,7 @@ class CovariantHead(TensorHead):
 
 
 class CovariantDerivative(SympyTensor):
-    _op_priority = 12
+    _op_priority = 13
     is_TensorDerivative = True
 
     def __new__(cls, head, idx, left=S.One, **kwargs):

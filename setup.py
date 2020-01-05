@@ -3,8 +3,8 @@ from setuptools import setup
 long_description = """RicciPy is a Python tensor algebra calculator for
 symbolically manipulating exact solutions to the Einstein Field Equations."""
 
-version = '0.1a'
-version_ref = '2'
+version = '0.2a'
+version_ref = '1'
 
 setup(
     name='riccipy',

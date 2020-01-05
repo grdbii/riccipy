@@ -10,8 +10,9 @@ from sympy.tensor.tensor import (
     TensorHead,
     TensorIndex,
     TensorManager,
-    TensorType,
-    tensorsymmetry,
+    TensorHead,
+    TensorSymmetry,
+    get_symmetric_group_sgs,
 )
 
 
@@ -90,7 +91,7 @@ class IndexedTensor(AbstractTensor, SympyTensor):
 
     Generated when a Tensor is called as a function with indices as arguments.
     """
-    _op_priority = 10
+    _op_priority = 11
 
     def __new__(cls, tensor, indices, **kwargs):
         obj = SympyTensor.__new__(cls, tensor, indices, **kwargs)
@@ -170,9 +171,8 @@ class Tensor(AbstractTensor, TensorHead):
         2*B_1**2 + 2*B_2**2 + 2*B_3**2 - 2*E_1**2 - 2*E_2**2 - 2*E_3**2
         """
         array = Array(matrix)
-        sym = kwargs.pop('symmetry', [[1] * array.rank()])
-        sym = tensorsymmetry(*sym)
-        symtype = TensorType(array.rank() * [metric], sym)
+        sym = kwargs.pop('symmetry', array.rank() * [1])
+        sym = TensorSymmetry.direct_product(*sym)
         comm = kwargs.pop('comm', 'general')
         covar = tuple(kwargs.pop('covar', array.rank() * [1]))
         if len(covar) != array.rank():
@@ -182,7 +182,7 @@ class Tensor(AbstractTensor, TensorHead):
                 )
             )
 
-        obj = TensorHead.__new__(cls, symbol, symtype, comm=comm, **kwargs)
+        obj = TensorHead.__new__(cls, symbol, array.rank() * [metric], sym, comm=comm, **kwargs)
         obj = AbstractTensor.__new__(cls, obj, array)
         # resolves a bug with pretty printing.
         obj.__class__.__name__ = 'TensorHead'
@@ -265,7 +265,7 @@ class Tensor(AbstractTensor, TensorHead):
         Replace the stored array associated with this tensor with a simplified
         version. This method also replaces the entry in the replacement dictionary.
         """
-        array = simplify(self.as_array())
+        array = self.as_array().applyfunc(simplify)
         self._array = array
         self._repl.setitem(self, array)
         return array

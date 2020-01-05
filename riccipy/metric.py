@@ -124,7 +124,7 @@ class Metric(AbstractTensor, TensorIndexType):
                 * (d(-mu) * g(-nu, -rh) + d(-nu) * g(-rh, -mu) - d(-rh) * g(-mu, -nu))
             )
             syms = expand_array(gamma, [si, -mu, -nu])
-            self._christoffel = Tensor('Gamma', syms, self, covar=(1, -1, -1))
+            self._christoffel = Tensor('\u0393', syms, self, covar=(1, -1, -1))
         return self._christoffel
 
     @property
@@ -148,7 +148,7 @@ class Metric(AbstractTensor, TensorIndexType):
             )
             res = expand_array(R, [rh, -si, -mu, -nu])
             self._riemann = Tensor(
-                'R', res, self, symmetry=[[2, 2]], covar=(1, -1, -1, -1)
+                'R', res, self, symmetry=(2, 2), covar=(1, -1, -1, -1)
             )
         return self._riemann
 
@@ -198,7 +198,7 @@ class Metric(AbstractTensor, TensorIndexType):
             elif n == 3:
                 res = tensorproduct(zeros(3, 3), zeros(3, 3))
                 self._weyl = Tensor(
-                    'C', res, self, symmetry=[[2, 2]], covar=(1, -1, -1, -1)
+                    'C', res, self, symmetry=(2, 2), covar=(1, -1, -1, -1)
                 )
                 return self._weyl
             c1 = Rational(1, n - 2)
@@ -221,7 +221,7 @@ class Metric(AbstractTensor, TensorIndexType):
             )
             res = expand_array(C, [rh, -si, -mu, -nu])
             self._weyl = Tensor(
-                'C', res, self, symmetry=[[2, 2]], covar=(1, -1, -1, -1)
+                'C', res, self, symmetry=(2, 2), covar=(1, -1, -1, -1)
             )
         return self._weyl
 

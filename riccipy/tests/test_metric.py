@@ -61,18 +61,14 @@ def test_Metric_riemann():
     rh, si = indices('rho sigma', g)
     R = g.riemann
 
-    def is_zero(arr):
-        for comp in arr:
-            yield comp.equals(0)
-
     expr = R(-rh, -si, -mu, -nu) + R(-si, -rh, -mu, -nu)
-    assert all(is_zero(expand_array(expr)))
+    assert all(expand_array(expr).applyfunc(lambda c: c.equals(0)).args[0])
     expr = R(-rh, -si, -mu, -nu) + R(-rh, -si, -nu, -mu)
-    assert all(is_zero(expand_array(expr)))
+    assert all(expand_array(expr).applyfunc(lambda c: c.equals(0)).args[0])
     expr = R(-rh, -si, -mu, -nu) - R(-mu, -nu, -rh, -si)
-    assert all(is_zero(expand_array(expr)))
+    assert all(expand_array(expr).applyfunc(lambda c: c.equals(0)).args[0])
     expr = R(-rh, -si, -mu, -nu) + R(-rh, -mu, -nu, -si) + R(-rh, -nu, -si, -mu)
-    assert all(is_zero(expand_array(expr)))
+    assert all(expand_array(expr).applyfunc(lambda c: c.equals(0)).args[0])
 
 
 def test_Metric_ricci_tensor():
@@ -104,15 +100,11 @@ def test_Metric_weyl():
     rh, si = indices('rho sigma', g)
     C = g.weyl
 
-    def is_zero(arr):
-        for comp in arr:
-            yield comp.equals(0)
-
     expr = C(-rh, -si, -mu, -nu) + C(-si, -rh, -mu, -nu)
-    assert all(is_zero(expand_array(expr)))
+    assert all(expand_array(expr).applyfunc(lambda c: c.equals(0)).args[0])
     expr = C(-rh, -si, -mu, -nu) + C(-rh, -si, -nu, -mu)
-    assert all(is_zero(expand_array(expr)))
+    assert all(expand_array(expr).applyfunc(lambda c: c.equals(0)).args[0])
     expr = C(-rh, -si, -mu, -nu) - C(-mu, -nu, -rh, -si)
-    assert all(is_zero(expand_array(expr)))
+    assert all(expand_array(expr).applyfunc(lambda c: c.equals(0)).args[0])
     expr = C(-rh, -si, -mu, -nu) + C(-rh, -mu, -nu, -si) + C(-rh, -nu, -si, -mu)
-    assert all(is_zero(expand_array(expr)))
+    assert all(expand_array(expr).applyfunc(lambda c: c.equals(0)).args[0])

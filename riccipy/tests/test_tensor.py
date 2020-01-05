@@ -44,14 +44,14 @@ def test_indices():
 
 
 def test_Tensor():
-    from sympy.tensor.tensor import tensorsymmetry
+    from sympy.tensor.tensor import TensorSymmetry
 
     (coords, metric) = _generate_simple()
     T = Tensor('T', coords, metric)
     assert isinstance(T, TensorHead)
     assert T.as_array() == Array(coords)
     assert T.covar == (1,)
-    assert T.symmetry == tensorsymmetry([1])
+    assert T.symmetry == TensorSymmetry.fully_symmetric(1)
 
 
 def test_Tensor_comm():
@@ -106,7 +106,7 @@ def test_expand_array():
     (coords, t, r, th, ph, mink, eta, mu, nu) = _generate_minkowski()
     E1, E2, E3, B1, B2, B3 = symbols('E_1:4 B_1:4', real=True)
     matrix = [[0, -E1, -E2, -E3], [E1, 0, -B3, B2], [E2, B3, 0, -B1], [E3, -B2, B1, 0]]
-    F = Tensor('F', matrix, eta, symmetry=[[2]])
+    F = Tensor('F', matrix, eta, symmetry=(2,))
     assert expand_array(eta(mu, nu) * eta(-mu, -nu)) == 4
     assert expand_array(F(mu, -mu)) == 0
     assert (
@@ -133,7 +133,7 @@ def test_expand_array():
     assert res2 == res3
     res1 = expand_array(g(mu, nu) * x(-nu))
     res2 = expand_array(x(mu))
-    assert simplify(res1) == res2
+    assert res1.applyfunc(simplify) == res2
     res = expand_array(x(mu) * x(-mu))
     assert (
         res
