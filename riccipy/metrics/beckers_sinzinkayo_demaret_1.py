@@ -5,8 +5,8 @@ Coordinates: Cartesian
 """
 from sympy import diag, symbols
 
-coords = symbols('t x y z', real=True)
-variables = symbols('k d m', constant=True)
+coords = symbols("t x y z", real=True)
+variables = symbols("k d m", constant=True)
 functions = ()
 t, x, y, z = coords
 k, d, m = variables

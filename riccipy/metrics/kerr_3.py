@@ -6,8 +6,8 @@ Notes: Outgoing Coordinates
 """
 from sympy import cos, sin, symbols, zeros
 
-coords = symbols('u r theta phi', real=True)
-variables = symbols('a M', constant=True)
+coords = symbols("u r theta phi", real=True)
+variables = symbols("a M", constant=True)
 functions = ()
 u, r, th, ph = coords
 a, M = variables

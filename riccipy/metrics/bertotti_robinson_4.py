@@ -9,8 +9,8 @@ Notes: Cosine
 """
 from sympy import cos, diag, symbols
 
-coords = symbols('t x y z', real=True)
-variables = symbols('omega', constant=True)
+coords = symbols("t x y z", real=True)
+variables = symbols("omega", constant=True)
 functions = ()
 t, x, y, z = coords
 om = variables

@@ -8,8 +8,8 @@ Coordinates: Cylindrical
 """
 from sympy import diag, symbols
 
-coords = symbols('t rho phi z', real=True)
-variables = symbols('B_0', constant=True)
+coords = symbols("t rho phi z", real=True)
+variables = symbols("B_0", constant=True)
 functions = ()
 t, rh, ph, z = coords
 B0 = variables

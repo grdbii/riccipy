@@ -8,9 +8,9 @@ Notes:
 """
 from sympy import Function, diag, sin, symbols
 
-coords = symbols('r v theta phi', real=True)
-variables = symbols('Lambda', constant=True)
-functions = symbols('M', cls=Function)
+coords = symbols("r v theta phi", real=True)
+variables = symbols("Lambda", constant=True)
+functions = symbols("M", cls=Function)
 r, v, th, ph = coords
 Lambda = variables
 M = functions

@@ -6,16 +6,16 @@ from riccipy.tensor import *
 
 
 def _generate_schwarzschild():
-    coords = symbols('t r theta phi', real=True)
+    coords = symbols("t r theta phi", real=True)
     t, r, th, ph = coords
-    schw = diag(1 - 1 / r, -1 / (1 - 1 / r), -r ** 2, -r ** 2 * sin(th) ** 2)
-    g = SpacetimeMetric('g', coords, schw, timelike=True)
-    mu, nu = indices('mu nu', g)
+    schw = diag(1 - 1 / r, -1 / (1 - 1 / r), -(r ** 2), -(r ** 2) * sin(th) ** 2)
+    g = SpacetimeMetric("g", coords, schw, timelike=True)
+    mu, nu = indices("mu nu", g)
     return (coords, t, r, th, ph, schw, g, mu, nu)
 
 
 def test_DiffOperator():
-    x, y = symbols('x y')
+    x, y = symbols("x y")
     dx = DiffOperator(x)
     assert (0 * dx) == 0
     expr = dx * (1 - 1 / x)

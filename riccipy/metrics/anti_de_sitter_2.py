@@ -7,7 +7,7 @@ Notes: Static
 """
 from sympy import cosh, diag, sin, sinh, symbols
 
-coords = symbols('t r theta phi', real=True)
+coords = symbols("t r theta phi", real=True)
 variables = ()
 functions = ()
 t, r, th, ph = coords

@@ -6,8 +6,8 @@ Symmetry: Static
 """
 from sympy import diag, sqrt, symbols
 
-coords = symbols('t x y z', real=True)
-variables = symbols('K', constant=True)
+coords = symbols("t x y z", real=True)
+variables = symbols("K", constant=True)
 functions = ()
 t, x, y, z = coords
 K = variables

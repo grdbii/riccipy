@@ -7,8 +7,8 @@ Symmetry:
 """
 from sympy import Rational, diag, sin, symbols
 
-coords = symbols('u w theta phi', real=True)
-variables = symbols('M', constant=True)
+coords = symbols("u w theta phi", real=True)
+variables = symbols("M", constant=True)
 functions = ()
 u, w, th, ph = coords
 M = variables

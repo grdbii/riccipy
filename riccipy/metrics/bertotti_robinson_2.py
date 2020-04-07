@@ -9,9 +9,9 @@ Coordinates: Spherical
 """
 from sympy import diag, sin, symbols
 
-coords = symbols('t r theta phi', real=True)
-variables = symbols('q', constant=True)
+coords = symbols("t r theta phi", real=True)
+variables = symbols("q", constant=True)
 functions = ()
 t, r, th, ph = coords
 q = variables
-metric = diag(-q ** 2 / r ** 2, q ** 2 / r ** 2, q ** 2, q ** 2 * sin(th) ** 2)
+metric = diag(-(q ** 2) / r ** 2, q ** 2 / r ** 2, q ** 2, q ** 2 * sin(th) ** 2)

@@ -4,9 +4,9 @@ References: Bondi, Proc. Roy. Soc. Lond. A, v269, p21, (1962)
 """
 from sympy import Function, exp, sin, symbols, zeros
 
-coords = symbols('r u theta phi', real=True)
+coords = symbols("r u theta phi", real=True)
 variables = ()
-functions = symbols('Q U V gamma', cls=Function)
+functions = symbols("Q U V gamma", cls=Function)
 r, u, th, ph = coords
 Q, U, V, ga = functions
 metric = zeros(4)

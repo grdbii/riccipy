@@ -5,11 +5,11 @@ from sympy import Expr, diag, eye, sin, symbols, tensorproduct, zeros
 
 
 def _generate_schwarzschild():
-    coords = symbols('t r theta phi', real=True)
+    coords = symbols("t r theta phi", real=True)
     t, r, th, ph = coords
-    schw = diag(1 - 1 / r, -1 / (1 - 1 / r), -r ** 2, -r ** 2 * sin(th) ** 2)
-    g = SpacetimeMetric('g', coords, schw, timelike=True)
-    mu, nu = indices('mu nu', g)
+    schw = diag(1 - 1 / r, -1 / (1 - 1 / r), -(r ** 2), -(r ** 2) * sin(th) ** 2)
+    g = SpacetimeMetric("g", coords, schw, timelike=True)
+    mu, nu = indices("mu nu", g)
     return (coords, t, r, th, ph, schw, g, mu, nu)
 
 
@@ -44,7 +44,7 @@ def test_Metric_density():
 def test_Metric_determinant():
     (coords, t, r, th, ph, schw, g, mu, nu) = _generate_schwarzschild()
     res = g.determinant
-    assert res.equals(-r ** 4 * sin(th) ** 2)
+    assert res.equals(-(r ** 4) * sin(th) ** 2)
 
 
 def test_Metric_christoffel():
@@ -52,13 +52,13 @@ def test_Metric_christoffel():
     gamma = g.christoffel.simplify()
     assert (
         str(gamma)
-        == '[[[0, 1/(2*r*(r - 1)), 0, 0], [1/(2*r*(r - 1)), 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]], [[(r - 1)/(2*r**3), 0, 0, 0], [0, -1/(2*r*(r - 1)), 0, 0], [0, 0, 1 - r, 0], [0, 0, 0, (1 - r)*sin(theta)**2]], [[0, 0, 0, 0], [0, 0, 1/r, 0], [0, 1/r, 0, 0], [0, 0, 0, -sin(2*theta)/2]], [[0, 0, 0, 0], [0, 0, 0, 1/r], [0, 0, 0, 1/tan(theta)], [0, 1/r, 1/tan(theta), 0]]]'
+        == "[[[0, 1/(2*r*(r - 1)), 0, 0], [1/(2*r*(r - 1)), 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]], [[(r - 1)/(2*r**3), 0, 0, 0], [0, -1/(2*r*(r - 1)), 0, 0], [0, 0, 1 - r, 0], [0, 0, 0, (1 - r)*sin(theta)**2]], [[0, 0, 0, 0], [0, 0, 1/r, 0], [0, 1/r, 0, 0], [0, 0, 0, -sin(2*theta)/2]], [[0, 0, 0, 0], [0, 0, 0, 1/r], [0, 0, 0, 1/tan(theta)], [0, 1/r, 1/tan(theta), 0]]]"
     )
 
 
 def test_Metric_riemann():
     (coords, t, r, th, ph, schw, g, mu, nu) = _generate_schwarzschild()
-    rh, si = indices('rho sigma', g)
+    rh, si = indices("rho sigma", g)
     R = g.riemann
 
     expr = R(-rh, -si, -mu, -nu) + R(-si, -rh, -mu, -nu)
@@ -91,13 +91,13 @@ def test_Metric_einstein():
 
 
 def test_Metric_weyl():
-    x, y, z = symbols('x y z', real=True)
-    eta = Metric('eta', (x, y, z), eye(3))
+    x, y, z = symbols("x y z", real=True)
+    eta = Metric("eta", (x, y, z), eye(3))
     zero_tensor = tensorproduct(zeros(3, 3), zeros(3, 3))
     assert eta.weyl.as_array() == zero_tensor
 
     (coords, t, r, th, ph, schw, g, mu, nu) = _generate_schwarzschild()
-    rh, si = indices('rho sigma', g)
+    rh, si = indices("rho sigma", g)
     C = g.weyl
 
     expr = C(-rh, -si, -mu, -nu) + C(-si, -rh, -mu, -nu)

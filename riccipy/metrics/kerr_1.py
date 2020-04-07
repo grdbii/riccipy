@@ -6,8 +6,8 @@ Symmetry: Axial
 """
 from sympy import symbols, zeros
 
-coords = symbols('t x y z', real=True)
-variables = symbols('a M', constant=True)
+coords = symbols("t x y z", real=True)
+variables = symbols("a M", constant=True)
 functions = ()
 t, x, y, z = coords
 a, M = variables

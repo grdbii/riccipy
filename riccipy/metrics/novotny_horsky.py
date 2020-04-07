@@ -6,8 +6,8 @@ Symmetry: Planar
 """
 from sympy import Rational, cos, diag, sin, symbols
 
-coords = symbols('t x y z', real=True)
-variables = symbols('a', constant=True)
+coords = symbols("t x y z", real=True)
+variables = symbols("a", constant=True)
 functions = ()
 t, x, y, z = coords
 a = variables

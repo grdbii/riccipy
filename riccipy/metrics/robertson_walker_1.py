@@ -9,9 +9,9 @@ Notes: Closed
 """
 from sympy import Function, diag, sin, symbols
 
-coords = symbols('t r theta phi', real=True)
+coords = symbols("t r theta phi", real=True)
 variables = ()
-functions = symbols('a', cls=Function)
+functions = symbols("a", cls=Function)
 t, r, th, ph = coords
 a = functions
 metric = diag(

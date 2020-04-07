@@ -6,7 +6,7 @@ Notes: Class A3
 """
 from sympy import diag, symbols
 
-coords = symbols('t r phi z', real=True)
+coords = symbols("t r phi z", real=True)
 variables = ()
 functions = ()
 t, r, ph, z = coords

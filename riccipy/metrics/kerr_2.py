@@ -8,8 +8,8 @@ Symmetry: Axial
 """
 from sympy import cos, sin, symbols, zeros
 
-coords = symbols('t r theta phi', real=True)
-variables = symbols('a M', constant=True)
+coords = symbols("t r theta phi", real=True)
+variables = symbols("a M", constant=True)
 functions = ()
 t, r, th, ph = coords
 a, M = variables
@@ -20,7 +20,7 @@ metric[1, 1] = expr / (r ** 2 - 2 * M * r + a ** 2)
 metric[2, 2] = expr
 metric[3, 3] = (
     (
-        -a ** 4 * sin(th) ** 2
+        -(a ** 4) * sin(th) ** 2
         + a ** 4
         + 2 * r ** 2 * a ** 2
         - a ** 2 * sin(th) ** 2 * r ** 2

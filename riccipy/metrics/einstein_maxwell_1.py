@@ -9,8 +9,8 @@ Notes: Angular Magnetic Field
 """
 from sympy import cosh, diag, log, symbols
 
-coords = symbols('t rho phi z', real=True)
-variables = symbols('a b m', constant=True)
+coords = symbols("t rho phi z", real=True)
+variables = symbols("a b m", constant=True)
 functions = ()
 t, rh, ph, z = coords
 a, b, m = variables

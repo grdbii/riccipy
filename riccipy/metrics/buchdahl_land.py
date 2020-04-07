@@ -10,7 +10,7 @@ Coordinates: Spherical
 """
 from sympy import Rational, diag, sin, symbols
 
-coords = symbols('t r theta phi', real=True)
+coords = symbols("t r theta phi", real=True)
 variables = ()
 functions = ()
 t, r, th, ph = coords

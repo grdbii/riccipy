@@ -6,8 +6,8 @@ Symmetry: Static
 """
 from sympy import diag, sin, symbols
 
-coords = symbols('t chi theta phi', real=True)
-variables = symbols('Lambda', constant=True)
+coords = symbols("t chi theta phi", real=True)
+variables = symbols("Lambda", constant=True)
 functions = ()
 t, ch, th, ph = coords
 La = variables

@@ -7,8 +7,8 @@ Notes: Cosmological Constant
 """
 from sympy import diag, sin, symbols
 
-coords = symbols('t r theta phi', real=True)
-variables = symbols('Lambda', constant=True)
+coords = symbols("t r theta phi", real=True)
+variables = symbols("Lambda", constant=True)
 functions = ()
 t, r, th, ph = coords
 La = variables

@@ -8,8 +8,8 @@ Notes: Bianchi VIo
 """
 from sympy import diag, exp, sqrt, symbols
 
-coords = symbols('t x y z', real=True)
-variables = symbols('n', constant=True)
+coords = symbols("t x y z", real=True)
+variables = symbols("n", constant=True)
 functions = ()
 t, x, y, z = coords
 n = variables

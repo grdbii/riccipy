@@ -5,7 +5,7 @@ Symmetry: Axial
 """
 from sympy import Rational, diag, symbols
 
-coords = symbols('t x y z', real=True)
+coords = symbols("t x y z", real=True)
 variables = ()
 functions = ()
 t, x, y, z = coords

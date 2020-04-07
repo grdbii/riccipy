@@ -7,8 +7,8 @@ Notes: Class A1
 """
 from sympy import diag, sin, symbols
 
-coords = symbols('t r theta phi', real=True)
-variables = symbols('M', constant=True)
+coords = symbols("t r theta phi", real=True)
+variables = symbols("M", constant=True)
 functions = ()
 t, r, th, ph = coords
 M = variables

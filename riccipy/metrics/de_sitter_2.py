@@ -6,8 +6,8 @@ Symmetry: Maximal
 """
 from sympy import diag, exp, symbols
 
-coords = symbols('t x y z', real=True)
-variables = symbols('alpha', constant=True)
+coords = symbols("t x y z", real=True)
+variables = symbols("alpha", constant=True)
 functions = ()
 t, x, y, z = coords
 al = variables

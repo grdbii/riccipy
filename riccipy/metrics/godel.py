@@ -7,8 +7,8 @@ Coordinates: Cartesian
 """
 from sympy import Rational, diag, exp, sqrt, symbols
 
-coords = symbols('t x y z', real=True)
-variables = symbols('omega', constant=True)
+coords = symbols("t x y z", real=True)
+variables = symbols("omega", constant=True)
 functions = ()
 t, x, y, z = coords
 om = variables
