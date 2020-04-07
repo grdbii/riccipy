@@ -8,8 +8,8 @@ Symmetry:
 """
 from sympy import diag, sin, symbols
 
-coords = symbols('t r theta phi', real=True)
-variables = symbols('A n', constant=True)
+coords = symbols("t r theta phi", real=True)
+variables = symbols("A n", constant=True)
 functions = ()
 t, r, th, ph = coords
 A, n = variables

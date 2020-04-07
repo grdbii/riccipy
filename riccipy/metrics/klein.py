@@ -7,8 +7,8 @@ Symmetry:
 """
 from sympy import Rational, diag, sin, sqrt, symbols
 
-coords = symbols('t r theta phi', real=True)
-variables = symbols('p_0', constant=True)
+coords = symbols("t r theta phi", real=True)
+variables = symbols("p_0", constant=True)
 functions = ()
 t, r, th, ph = coords
 p0 = variables

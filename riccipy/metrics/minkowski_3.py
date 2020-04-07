@@ -5,8 +5,8 @@ Symmetry: Maximal
 """
 from sympy import Rational, sin, symbols, zeros
 
-coords = symbols('u v theta phi', real=True)
-variables = symbols('a b c', constant=True)
+coords = symbols("u v theta phi", real=True)
+variables = symbols("a b c", constant=True)
 functions = ()
 u, v, th, ph = coords
 a, b, c = variables

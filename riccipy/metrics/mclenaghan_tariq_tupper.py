@@ -7,8 +7,8 @@ References:
 """
 from sympy import diag, symbols
 
-coords = symbols('t x y phi', real=True)
-variables = symbols('a', constant=True)
+coords = symbols("t x y phi", real=True)
+variables = symbols("a", constant=True)
 functions = ()
 t, x, y, ph = coords
 a = variables

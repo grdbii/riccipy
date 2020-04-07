@@ -9,13 +9,13 @@ Notes: n = 4
 """
 from sympy import Rational, sin, symbols, zeros
 
-coords = symbols('t r theta phi', real=True)
-variables = symbols('A C K', constant=True)
+coords = symbols("t r theta phi", real=True)
+variables = symbols("A C K", constant=True)
 functions = ()
 t, r, th, ph = coords
 A, C, K = variables
 metric = zeros(4)
-metric[0, 0] = -A ** 2 * (1 + C * r ** 2) ** 4
+metric[0, 0] = -(A ** 2) * (1 + C * r ** 2) ** 4
 metric[1, 1] = (
     7
     * (1 + C * r ** 2) ** 2

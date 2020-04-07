@@ -12,8 +12,8 @@ Notes: Outgoing Coordinates
 """
 from sympy import diag, sin, symbols
 
-coords = symbols('r u theta phi', real=True)
-variables = symbols('M', constant=True)
+coords = symbols("r u theta phi", real=True)
+variables = symbols("M", constant=True)
 functions = ()
 r, u, th, ph = coords
 M = variables

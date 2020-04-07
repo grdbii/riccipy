@@ -8,8 +8,8 @@ Notes: Type 2
 """
 from sympy import diag, symbols
 
-coords = symbols('t x y z', real=True)
-variables = symbols('C_1 C_2 mu', constant=True)
+coords = symbols("t x y z", real=True)
+variables = symbols("C_1 C_2 mu", constant=True)
 functions = ()
 t, x, y, z = coords
 C1, C2, mu = variables

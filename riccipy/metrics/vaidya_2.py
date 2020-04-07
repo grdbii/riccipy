@@ -6,9 +6,9 @@ Notes: Ingoing Coordinates
 """
 from sympy import Function, diag, sin, symbols
 
-coords = symbols('r v theta phi', real=True)
+coords = symbols("r v theta phi", real=True)
 variables = ()
-functions = symbols('M', cls=Function)
+functions = symbols("M", cls=Function)
 r, v, th, ph = coords
 M = functions
 metric = diag(0, -(1 - 2 * M(v) / r), r ** 2, r ** 2 * sin(th) ** 2)

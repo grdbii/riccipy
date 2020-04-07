@@ -4,8 +4,8 @@ References: Griffiths, Math. Proc. Camb. Phil. Soc., v77, p559, (1975)
 """
 from sympy import Rational, symbols, zeros
 
-coords = symbols('u v x y', real=True)
-variables = symbols('a', constant=True)
+coords = symbols("u v x y", real=True)
+variables = symbols("a", constant=True)
 functions = ()
 u, v, x, y = coords
 a = variables

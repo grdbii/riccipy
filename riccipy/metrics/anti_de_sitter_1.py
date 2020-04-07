@@ -5,7 +5,7 @@ Symmetry: Maximal
 """
 from sympy import cos, diag, sin, sinh, symbols
 
-coords = symbols('t chi theta phi', real=True)
+coords = symbols("t chi theta phi", real=True)
 variables = ()
 functions = ()
 t, ch, th, ph = coords

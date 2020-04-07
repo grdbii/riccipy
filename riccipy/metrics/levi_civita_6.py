@@ -6,8 +6,8 @@ Notes: Class B3
 """
 from sympy import diag, symbols
 
-coords = symbols('t r phi z', real=True)
+coords = symbols("t r phi z", real=True)
 variables = ()
 functions = ()
 t, r, ph, z = coords
-metric = diag(-r ** 2 * z ** 2, z ** 2, 1 / z, z)
+metric = diag(-(r ** 2) * z ** 2, z ** 2, 1 / z, z)

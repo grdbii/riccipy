@@ -6,9 +6,9 @@ Symmetry: Spherical
 """
 from sympy import Function, diag, sin, symbols
 
-coords = symbols('t r theta phi', real=True)
-variables = symbols('k', constant=True)
-functions = symbols('E', cls=Function)
+coords = symbols("t r theta phi", real=True)
+variables = symbols("k", constant=True)
+functions = symbols("E", cls=Function)
 t, r, th, ph = coords
 k = variables
 E = functions

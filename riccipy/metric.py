@@ -1,5 +1,4 @@
 from collections import namedtuple
-from pathlib import Path
 
 from sympy import Array, Pow, Rational, S, ones, tensorproduct, zeros
 from sympy.tensor.tensor import TensorIndexType
@@ -15,7 +14,7 @@ class Metric(AbstractTensor, TensorIndexType):
 
     # This object allows for having the metric be represented by the
     # same symbol as the tensor it associates with.
-    _MetricId = namedtuple('MetricId', ['name', 'antisym'])
+    _MetricId = namedtuple("MetricId", ["name", "antisym"])
 
     is_Metric = True
     _christoffel = None
@@ -54,7 +53,7 @@ class Metric(AbstractTensor, TensorIndexType):
         array = Array(matrix)
         if array.rank() != 2 or array.shape[0] != array.shape[1]:
             raise ValueError(
-                'matrix must be square, received matrix of shape {}'.format(array.shape)
+                "matrix must be square, received matrix of shape {}".format(array.shape)
             )
         obj = TensorIndexType.__new__(
             cls,
@@ -115,7 +114,7 @@ class Metric(AbstractTensor, TensorIndexType):
         \frac{1}{2} g^{\sigma\rho} (\partial_\mu g_{\nu\rho} + \partial_\nu g_{\rho\mu} - \partial_\rho g_{\mu\nu})
         """
         if self._christoffel is None:
-            mu, nu, si, rh = indices('mu nu sigma rho', self)
+            mu, nu, si, rh = indices("mu nu sigma rho", self)
             d = self.partial
             g = self.metric
             gamma = (
@@ -124,7 +123,7 @@ class Metric(AbstractTensor, TensorIndexType):
                 * (d(-mu) * g(-nu, -rh) + d(-nu) * g(-rh, -mu) - d(-rh) * g(-mu, -nu))
             )
             syms = expand_array(gamma, [si, -mu, -nu])
-            self._christoffel = Tensor('\u0393', syms, self, covar=(1, -1, -1))
+            self._christoffel = Tensor("\u0393", syms, self, covar=(1, -1, -1))
         return self._christoffel
 
     @property
@@ -136,9 +135,8 @@ class Metric(AbstractTensor, TensorIndexType):
         + \Gamma^\rho_{\mu\lambda} \Gamma^\lambda_{\nu\sigma} - \Gamma^\rho_{\nu\lambda} \Gamma^\lambda_{\mu\sigma}
         """
         if self._riemann is None:
-            mu, nu, si, rh, la = indices('mu nu sigma rho lambda', self)
+            mu, nu, si, rh, la = indices("mu nu sigma rho lambda", self)
             d = self.partial
-            g = self.metric
             gamma = self.christoffel
             R = (
                 d(-mu) * gamma(rh, -nu, -si)
@@ -148,7 +146,7 @@ class Metric(AbstractTensor, TensorIndexType):
             )
             res = expand_array(R, [rh, -si, -mu, -nu])
             self._riemann = Tensor(
-                'R', res, self, symmetry=(2, 2), covar=(1, -1, -1, -1)
+                "R", res, self, symmetry=(2, 2), covar=(1, -1, -1, -1)
             )
         return self._riemann
 
@@ -159,10 +157,10 @@ class Metric(AbstractTensor, TensorIndexType):
         R_{\mu\nu} = R^\sigma_{\mu\sigma\nu}
         """
         if self._ricci_tensor is None:
-            mu, nu, si = indices('mu nu sigma', self)
+            mu, nu, si = indices("mu nu sigma", self)
             R = self.riemann
             res = expand_array(R(si, -mu, -si, -nu), [-mu, -nu])
-            self._ricci_tensor = Tensor('R', res, self, covar=(-1, -1))
+            self._ricci_tensor = Tensor("R", res, self, covar=(-1, -1))
         return self._ricci_tensor
 
     @property
@@ -172,7 +170,7 @@ class Metric(AbstractTensor, TensorIndexType):
         R = R^\mu_\mu
         """
         if self._ricci_scalar is None:
-            mu, nu = indices('mu nu', self)
+            mu, nu = indices("mu nu", self)
             g = self.metric
             RR = self.ricci_tensor
             res = expand_array(g(-mu, -nu) * RR(mu, nu))
@@ -191,19 +189,19 @@ class Metric(AbstractTensor, TensorIndexType):
             n = self.dim
             if n < 3:
                 raise ValueError(
-                    'the Weyl tensor is only defined in dimensions of 3 or more. {} is of dimension {}'.format(
+                    "the Weyl tensor is only defined in dimensions of 3 or more. {} is of dimension {}".format(
                         self, n
                     )
                 )
             elif n == 3:
                 res = tensorproduct(zeros(3, 3), zeros(3, 3))
                 self._weyl = Tensor(
-                    'C', res, self, symmetry=(2, 2), covar=(1, -1, -1, -1)
+                    "C", res, self, symmetry=(2, 2), covar=(1, -1, -1, -1)
                 )
                 return self._weyl
             c1 = Rational(1, n - 2)
             c2 = Rational(1, (n - 2) * (n - 1))
-            mu, nu, si, rh = indices('mu nu sigma rho', self)
+            mu, nu, si, rh = indices("mu nu sigma rho", self)
             R = self.riemann
             RR = self.ricci_tensor
             RRR = self.ricci_scalar
@@ -220,9 +218,7 @@ class Metric(AbstractTensor, TensorIndexType):
                 + c2 * (g(rh, -mu) * g(-nu, -si) - g(rh, -nu) * g(-mu, -si)) * RRR
             )
             res = expand_array(C, [rh, -si, -mu, -nu])
-            self._weyl = Tensor(
-                'C', res, self, symmetry=(2, 2), covar=(1, -1, -1, -1)
-            )
+            self._weyl = Tensor("C", res, self, symmetry=(2, 2), covar=(1, -1, -1, -1))
         return self._weyl
 
     @property
@@ -232,12 +228,12 @@ class Metric(AbstractTensor, TensorIndexType):
         G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu}
         """
         if self._einstein is None:
-            mu, nu = indices('mu nu', self)
+            mu, nu = indices("mu nu", self)
             g = self.metric
             R = self.ricci_tensor
             RR = self.ricci_scalar
             res = expand_array(R(-mu, -nu) - Rational(1, 2) * RR * g(-mu, -nu))
-            self._einstein = Tensor('G', res, self, covar=(-1, -1))
+            self._einstein = Tensor("G", res, self, covar=(-1, -1))
         return self._einstein
 
 
@@ -251,7 +247,7 @@ class SpacetimeMetric(Metric):
     def __new__(cls, symbol, coords, matrix, timelike=True, **kwargs):
         obj = super().__new__(cls, symbol, coords, matrix, **kwargs)
         if obj.dim > 4:
-            raise ValueError('metrics on spacetime must be at most 4-dimensional')
+            raise ValueError("metrics on spacetime must be at most 4-dimensional")
         obj.is_timelike = timelike
         obj.is_spacelike = not timelike
         return obj
@@ -273,12 +269,15 @@ class SpacetimeMetric(Metric):
 
 def load_metric(symbol, name, coords=None, notes=None, timelike=False):
     from .metrics import data
+
     spacetime = data(name, coords=coords, notes=notes)
     if isinstance(spacetime, list):
         spacetime = spacetime[0]
-    metric = SpacetimeMetric(symbol, spacetime['coords'], spacetime['metric'], timelike=False)
+    metric = SpacetimeMetric(
+        symbol, spacetime["coords"], spacetime["metric"], timelike=False
+    )
     if timelike:
         metric.reverse_signature()
-    variables = spacetime['variables']
-    functions = spacetime['functions']
+    variables = spacetime["variables"]
+    functions = spacetime["functions"]
     return (metric, variables, functions)

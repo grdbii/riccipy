@@ -6,8 +6,8 @@ Notes: Class A2
 """
 from sympy import diag, sinh, symbols
 
-coords = symbols('t r phi z', real=True)
-variables = symbols('M', constant=True)
+coords = symbols("t r phi z", real=True)
+variables = symbols("M", constant=True)
 functions = ()
 t, r, ph, z = coords
 M = variables

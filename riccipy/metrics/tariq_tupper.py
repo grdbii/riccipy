@@ -8,7 +8,7 @@ Notes: Admits G3VIo on S3
 """
 from sympy import diag, exp, symbols
 
-coords = symbols('t x y z', real=True)
+coords = symbols("t x y z", real=True)
 variables = ()
 functions = ()
 t, x, y, z = coords

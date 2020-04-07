@@ -9,7 +9,7 @@ Notes:
 """
 from sympy import Rational, diag, sin, sqrt, symbols
 
-coords = symbols('x_0:4', real=True)
+coords = symbols("x_0:4", real=True)
 variables = ()
 functions = ()
 x0, x1, x2, x3 = coords

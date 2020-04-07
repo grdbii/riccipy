@@ -11,10 +11,10 @@ Notes:
 """
 from sympy import diag, exp, symbols
 
-coords = symbols('t r phi z', real=True)
-variables = symbols('a C')
+coords = symbols("t r phi z", real=True)
+variables = symbols("a C")
 functions = ()
 t, r, ph, z = coords
 a, C = variables
 expr = r ** (2 * a * (a - 1)) * exp(2 * (2 * a * z - z - r ** 2 / 2 + C))
-metric = diag(-r ** (2 * a) * exp(2 * z), expr, r ** (2 * (1 - a)) / exp(2 * z), expr)
+metric = diag(-(r ** (2 * a)) * exp(2 * z), expr, r ** (2 * (1 - a)) / exp(2 * z), expr)

@@ -8,8 +8,8 @@ Notes: Closed
 """
 from sympy import cos, diag, sin, symbols
 
-coords = symbols('nu chi theta phi', real=True)
-variables = symbols('A_0', constant=True)
+coords = symbols("nu chi theta phi", real=True)
+variables = symbols("A_0", constant=True)
 functions = ()
 nu, ch, th, ph = coords
 A0 = variables

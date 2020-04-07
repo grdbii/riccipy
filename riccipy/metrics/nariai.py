@@ -5,9 +5,9 @@ Coordinates: Cartesian
 """
 from sympy import Function, cos, diag, log, sin, sqrt, symbols
 
-coords = symbols('t x y z', real=True)
-variables = symbols('lambda', constant=True)
-functions = symbols('a b', cls=Function)
+coords = symbols("t x y z", real=True)
+variables = symbols("lambda", constant=True)
+functions = symbols("a b", cls=Function)
 t, x, y, z = coords
 la = variables
 a, b = functions

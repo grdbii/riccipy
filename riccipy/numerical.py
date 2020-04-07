@@ -38,7 +38,7 @@ class NumericalArray(object):
         self._vars = args
         self._objstr = str(array)
         self._array = array
-        self._modules = kwargs.pop('modules', None)
+        self._modules = kwargs.pop("modules", None)
         self._lambda = lambdify(self._vars, self._array, modules=self._modules)
         self._generator = self._build_generator()
 
@@ -59,10 +59,10 @@ class NumericalArray(object):
     def __getattr__(self, attr):
         if hasattr(self._array, attr):
             return getattr(self._array, attr)
-        raise AttributeError('%s has no attribute: %s', self.__class__.__name__, attr)
+        raise AttributeError("%s has no attribute: %s", self.__class__.__name__, attr)
 
     def __repr__(self):
-        return 'NumericalArray(%s)' % self._objstr
+        return "NumericalArray(%s)" % self._objstr
 
     def __str__(self):
         return self.__repr__()

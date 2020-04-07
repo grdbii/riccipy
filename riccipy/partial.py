@@ -1,12 +1,11 @@
 from collections import deque
-from sympy import Array, Basic, Expr, Mul, S, Symbol, diff
+from sympy import Basic, Expr, Mul, S, Symbol, diff
 from sympy.core.decorators import call_highest_priority
 from sympy.tensor.tensor import (
     Tensor as SympyTensor,
     TensorHead,
     TensorSymmetry,
     TensMul,
-    TensAdd,
 )
 
 from .tensor import Tensor, Index, IndexedTensor
@@ -25,20 +24,20 @@ class DiffOperator(Expr):
 
     def __repr__(self):
         syms = [s.name for s in self.args]
-        name = '\u2202(%s)' % ','.join(syms)
+        name = "\u2202(%s)" % ",".join(syms)
         return str(Mul(self._left, Symbol(name, commutative=False)))
 
     def __str__(self):
         return self.__repr__()
 
-    @call_highest_priority('__rmul__')
+    @call_highest_priority("__rmul__")
     def __mul__(self, other):
         if isinstance(other, DiffOperator):
             args = self.args + other.args
             return DiffOperator(*args)
         return Mul(self._left, diff(other, *self.args)).doit()
 
-    @call_highest_priority('__mul__')
+    @call_highest_priority("__mul__")
     def __rmul__(self, other):
         return DiffOperator(*self.args, left=Mul(other, self._left))
 
@@ -49,12 +48,12 @@ class PartialDerivative(Tensor):
     def __new__(cls, metric, **kwargs):
         basis = list(map(DiffOperator, metric.coords))
         return super().__new__(
-            cls, '\u2202', basis, metric, comm='partial', covar=(-1,)
+            cls, "\u2202", basis, metric, comm="partial", covar=(-1,)
         )
 
     def __call__(self, idx):
         if idx.is_up:
-            raise ValueError('partial derivatives cannot have a contravariant index')
+            raise ValueError("partial derivatives cannot have a contravariant index")
         return IndexedPartial(self, [idx])
 
     def __repr__(self):
@@ -67,7 +66,7 @@ class PartialDerivative(Tensor):
 class IndexedPartial(IndexedTensor):
     _op_priority = 13
 
-    @call_highest_priority('__rmul__')
+    @call_highest_priority("__rmul__")
     def __mul__(self, other):
         if not isinstance(other, TensMul):
             return SympyTensor.__mul__(self, other)
@@ -85,7 +84,7 @@ class CovariantHead(TensorHead):
 
     def __new__(cls, metric, **kwargs):
         sym = TensorSymmetry.fully_symmetric(1)
-        obj = TensorHead.__new__(cls, '\u2207', [metric], sym, comm='partial')
+        obj = TensorHead.__new__(cls, "\u2207", [metric], sym, comm="partial")
         return obj
 
     def __call__(self, idx):
@@ -103,11 +102,11 @@ class CovariantDerivative(SympyTensor):
         obj._left = left
         return obj
 
-    @call_highest_priority('__rmul__')
+    @call_highest_priority("__rmul__")
     def __mul__(self, other):
         metric = self._head.index_types[0]
-        dum0 = Index(self._idx.name + '_0', metric)
-        dum1 = Index(self._idx.name + '_1', metric, is_up=False)
+        dum0 = Index(self._idx.name + "_0", metric)
+        dum1 = Index(self._idx.name + "_1", metric, is_up=False)
         partial = metric.partial
         Gamma = metric.christoffel
         free_idxs = other.get_free_indices()
@@ -125,7 +124,7 @@ class CovariantDerivative(SympyTensor):
             left *= metric(-coidx, self._idx)
         return TensMul(left, expr).doit()
 
-    @call_highest_priority('__mul__')
+    @call_highest_priority("__mul__")
     def __rmul__(self, other):
         left = TensMul(other, self._left).doit()
         return CovariantDerivative(self._head, [self._idx], left=left)

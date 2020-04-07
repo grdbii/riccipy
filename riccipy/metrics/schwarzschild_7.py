@@ -8,8 +8,8 @@ Notes: Tolman-Bondi Dust Limiting Case
 """
 from sympy import Rational, diag, sin, symbols
 
-coords = symbols('t r theta phi', real=True)
-variables = symbols('M', constant=True)
+coords = symbols("t r theta phi", real=True)
+variables = symbols("M", constant=True)
 functions = ()
 t, r, th, ph = coords
 M = variables

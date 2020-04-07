@@ -1,7 +1,6 @@
 from collections import defaultdict
 
 from sympy import Array, preorder_traversal, simplify, symbols
-from sympy.core.compatibility import string_types
 from sympy.core.decorators import call_highest_priority
 from sympy.tensor.array import permutedims, tensorcontraction, tensorproduct
 from sympy.tensor.tensor import (
@@ -10,9 +9,7 @@ from sympy.tensor.tensor import (
     TensorHead,
     TensorIndex,
     TensorManager,
-    TensorHead,
     TensorSymmetry,
-    get_symmetric_group_sgs,
 )
 
 
@@ -91,6 +88,7 @@ class IndexedTensor(AbstractTensor, SympyTensor):
 
     Generated when a Tensor is called as a function with indices as arguments.
     """
+
     _op_priority = 11
 
     def __new__(cls, tensor, indices, **kwargs):
@@ -98,11 +96,11 @@ class IndexedTensor(AbstractTensor, SympyTensor):
         array = tensor.covariance_transform(*indices)
         return AbstractTensor.__new__(cls, obj, array)
 
-    @call_highest_priority('__rmul__')
+    @call_highest_priority("__rmul__")
     def __mul__(self, other):
         return SympyTensor.__mul__(self, other)
 
-    @call_highest_priority('__mul__')
+    @call_highest_priority("__mul__")
     def __rmul__(self, other):
         return SympyTensor.__rmul__(self, other)
 
@@ -171,21 +169,23 @@ class Tensor(AbstractTensor, TensorHead):
         2*B_1**2 + 2*B_2**2 + 2*B_3**2 - 2*E_1**2 - 2*E_2**2 - 2*E_3**2
         """
         array = Array(matrix)
-        sym = kwargs.pop('symmetry', array.rank() * [1])
+        sym = kwargs.pop("symmetry", array.rank() * [1])
         sym = TensorSymmetry.direct_product(*sym)
-        comm = kwargs.pop('comm', 'general')
-        covar = tuple(kwargs.pop('covar', array.rank() * [1]))
+        comm = kwargs.pop("comm", "general")
+        covar = tuple(kwargs.pop("covar", array.rank() * [1]))
         if len(covar) != array.rank():
             raise ValueError(
-                'covariance signature {} does not match tensor rank {}'.format(
+                "covariance signature {} does not match tensor rank {}".format(
                     covar, array.rank()
                 )
             )
 
-        obj = TensorHead.__new__(cls, symbol, array.rank() * [metric], sym, comm=comm, **kwargs)
+        obj = TensorHead.__new__(
+            cls, symbol, array.rank() * [metric], sym, comm=comm, **kwargs
+        )
         obj = AbstractTensor.__new__(cls, obj, array)
         # resolves a bug with pretty printing.
-        obj.__class__.__name__ = 'TensorHead'
+        obj.__class__.__name__ = "TensorHead"
         obj.covar = covar
         idxs = obj._dummy_idxs()
         obj._repl[obj(*idxs)] = array
@@ -217,7 +217,8 @@ class Tensor(AbstractTensor, TensorHead):
         idx_names = map(dummy_fmt_gen, self.index_types)
         idx_generator = map(Index, idx_names, self.index_types)
         idxs = [
-            idx if self.covar[pos] > 0 else -idx for pos, idx in enumerate(idx_generator)
+            idx if self.covar[pos] > 0 else -idx
+            for pos, idx in enumerate(idx_generator)
         ]
         return idxs
 
@@ -335,11 +336,11 @@ def indices(s, metric, is_up=True):
     """
     Create indices using a method similar to sympy.symbols.
     """
-    if isinstance(s, string_types):
+    if isinstance(s, str):
         a = [x.name for x in symbols(s, seq=True)]
     else:
         raise ValueError(
-            'expected a string, received object of type {}'.format(type(s))
+            "expected a string, received object of type {}".format(type(s))
         )
     idxs = [Index(idx, metric, is_up) for idx in a]
     if len(idxs) == 1:
@@ -348,6 +349,6 @@ def indices(s, metric, is_up=True):
 
 
 # metric tensors and general tensors commute with each other and themselves.
-TensorManager.set_comm('general', 'general', 0)
+TensorManager.set_comm("general", "general", 0)
 # partial derivatives only commute with themselves.
-TensorManager.set_comm('partial', 'partial', 0)
+TensorManager.set_comm("partial", "partial", 0)

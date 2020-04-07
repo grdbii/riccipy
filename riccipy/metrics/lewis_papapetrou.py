@@ -5,9 +5,9 @@ Coordinates: Cartesian
 """
 from sympy import Function, Rational, exp, symbols, zeros
 
-coords = symbols('t x y z', real=True)
+coords = symbols("t x y z", real=True)
 variables = ()
-functions = symbols('k r s w', cls=Function)
+functions = symbols("k r s w", cls=Function)
 t, x, y, z = coords
 k, r, s, w = functions
 metric = zeros(4)

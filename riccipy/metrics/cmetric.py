@@ -4,9 +4,9 @@ References: Stephani (Table 16.2) p188
 """
 from sympy import Function, diag, symbols
 
-coords = symbols('t x y phi', real=True)
+coords = symbols("t x y phi", real=True)
 variables = ()
-functions = symbols('f h', cls=Function)
+functions = symbols("f h", cls=Function)
 t, x, y, ph = coords
 f, h = functions
 metric = diag(
