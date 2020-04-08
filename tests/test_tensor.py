@@ -107,7 +107,9 @@ def test_expand_array():
     E1, E2, E3, B1, B2, B3 = symbols("E_1:4 B_1:4", real=True)
     matrix = [[0, -E1, -E2, -E3], [E1, 0, -B3, B2], [E2, B3, 0, -B1], [E3, -B2, B1, 0]]
     F = Tensor("F", matrix, eta, symmetry=(2,))
-    assert expand_array(eta(mu, nu) * eta(-mu, -nu)) == 4
+    res1 = expand_array(eta(mu, nu) * eta(-mu, -nu))
+    res2 = expand_array(eta(mu, -mu))
+    assert res1 == res2 == 4
     assert expand_array(F(mu, -mu)) == 0
     assert (
         expand_array(F(mu, nu) * F(-mu, -nu))
@@ -124,13 +126,13 @@ def test_expand_array():
     assert schw.inv().equals(res)
     res1 = expand_array(g(mu, nu) * g(-mu, -nu))
     res2 = expand_array(g(-mu, -nu) * g(mu, nu))
-    assert res1 == res2
+    res3 = expand_array(g(-mu, mu))
+    assert res1 == res2 == res3
     assert simplify(res1) == 4
     res1 = expand_array(g(-mu, -nu) * x(nu))
     res2 = expand_array(x(-mu))
     res3 = x.covariance_transform(-mu)
-    assert res1 == res2
-    assert res2 == res3
+    assert res1 == res2 == res3
     res1 = expand_array(g(mu, nu) * x(-nu))
     res2 = expand_array(x(mu))
     assert res1.applyfunc(simplify) == res2
