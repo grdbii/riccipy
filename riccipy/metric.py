@@ -58,13 +58,13 @@ class Metric(AbstractTensor, TensorIndexType):
         obj = TensorIndexType.__new__(
             cls,
             symbol,
-            metric=cls._MetricId(symbol, False),
+            metric_name=cls._MetricId(symbol, False),
             dim=array.shape[0],
-            dummy_fmt=symbol,
+            dummy_name=symbol,
             **kwargs
         )
         obj = AbstractTensor.__new__(cls, obj, array)
-        obj.metric = Tensor(obj.name, array, obj, covar=(-1, -1))
+        obj._metric = Tensor(obj.name, array, obj, covar=(-1, -1))
         obj.coords = tuple(coords)
         obj._repl[obj] = array
         return obj
@@ -93,6 +93,10 @@ class Metric(AbstractTensor, TensorIndexType):
 
     def density(self, weight=S.One):
         return Pow(abs(self.determinant), Rational(weight, 2))
+
+    @property
+    def metric(self):
+        return self._metric
 
     @property
     def determinant(self):

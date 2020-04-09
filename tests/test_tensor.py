@@ -127,7 +127,8 @@ def test_expand_array():
     res1 = expand_array(g(mu, nu) * g(-mu, -nu))
     res2 = expand_array(g(-mu, -nu) * g(mu, nu))
     res3 = expand_array(g(-mu, mu))
-    assert res1 == res2 == res3
+    assert res1.equals(res2)
+    assert res2.equals(res3)
     assert simplify(res1) == 4
     res1 = expand_array(g(-mu, -nu) * x(nu))
     res2 = expand_array(x(-mu))

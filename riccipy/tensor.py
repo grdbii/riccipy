@@ -207,14 +207,14 @@ class Tensor(AbstractTensor, TensorHead):
     def _dummy_idxs(self):
         count = defaultdict(int)
 
-        def dummy_fmt_gen(idxtype):
+        def dummy_name_gen(idxtype):
             # generate a generic index for the entry in replacement dictionary.
-            fmt = idxtype.dummy_fmt
+            fmt = idxtype.dummy_name + '_%d'
             n = count[idxtype]
             count[idxtype] += 1
             return fmt % n
 
-        idx_names = map(dummy_fmt_gen, self.index_types)
+        idx_names = map(dummy_name_gen, self.index_types)
         idx_generator = map(Index, idx_names, self.index_types)
         idxs = [
             idx if self.covar[pos] > 0 else -idx
