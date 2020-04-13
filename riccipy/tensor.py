@@ -224,7 +224,7 @@ class Tensor(AbstractTensor, TensorHead):
         ]
         return idxs
 
-    def set_variables(self, sub_dict):
+    def subs(self, sub_dict):
         """
         Use a dictionary to replace symbols/variables in a tensor.
 
@@ -240,7 +240,7 @@ class Tensor(AbstractTensor, TensorHead):
         >>> t, r, th, ph, M = symbols('t r theta phi M', real=True)
         >>> schwarzschild = diag(1 - 2 * M/r, 1/(1 - 2 * M/r), r ** 2, r ** 2 * sin(th) ** 2)
         >>> g = Metric('g', [t, r, th, ph], schwarzschild)
-        >>> g.set_variables({M: Rational(1, 2)})
+        >>> g.subs({M: Rational(1, 2)})
         >>> g.as_array()
         [[1 - 1/r, 0, 0, 0], [0, 1/(1 - 1/r), 0, 0], [0, 0, r**2, 0], [0, 0, 0, r**2*sin(theta)**2]]
         """

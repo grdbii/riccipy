@@ -80,8 +80,8 @@ class Metric(AbstractTensor, TensorIndexType):
     def __getitem__(self, keys):
         return self.metric.__getitem__(keys)
 
-    def set_variables(self, sub_dict):
-        self.metric.set_variables(sub_dict)
+    def subs(self, sub_dict):
+        self.metric.subs(sub_dict)
         self._array = self._array.subs(sub_dict)
         self._repl[self] = self._array
         self._christoffel = None
