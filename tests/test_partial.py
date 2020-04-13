@@ -1,4 +1,4 @@
-from sympy import diag, sin, symbols
+from sympy import diag, sin, symbols, tensorproduct
 
 from riccipy.metric import *
 from riccipy.partial import *
@@ -36,3 +36,14 @@ def test_PartialDerivative():
     assert d.commutes_with(d) == 0
     assert d.covar == (-1,)
     assert all([isinstance(dx, DiffOperator) for dx in d.as_array()])
+
+
+def test_CovariantDerivative():
+    (coords, t, r, th, ph, schw, g, mu, nu) = _generate_schwarzschild()
+    d = g.covariant
+    assert isinstance(d, CovariantHead)
+    assert isinstance(d(-mu), CovariantDerivative)
+    assert isinstance(d(mu), CovariantDerivative)
+    expr = d(-mu) * g(mu, nu)
+    res = simplify(expand_array(expr))
+    assert res == Array([0, 0, 0, 0])
