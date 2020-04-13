@@ -14,6 +14,10 @@ from sympy.tensor.tensor import (
 
 
 class Repl(dict):
+    """
+    Dictionary object used for managing the replacements of tensors to arrays.
+    """
+
     def getkey(self, tensor):
         item = tensor if (tensor.is_TensorHead or tensor.is_Metric) else tensor.args[0]
         for key in self.keys():
@@ -73,6 +77,9 @@ class AbstractTensor(object):
         return self._array.copy()
 
     def as_inverse(self):
+        """
+        Return the data of the inversed array associated with the tensor.
+        """
         if self._inverse is None:
             self._inverse = Array(self.as_matrix().inv())
         return self._inverse
@@ -130,14 +137,12 @@ class Tensor(AbstractTensor, TensorHead):
         Notes
         -----
         If the parameter ``symmetry`` is passed, the tensor object will defined
-        using a specific symmetry. Example values are (see sympy documentation
-        for the function ``tensorsymmetry``):
-        ``[[1]]``         vector
-        ``[[1]*n]``       symmetric tensor of rank ``n``
-        ``[[n]]``         antisymmetric tensor of rank ``n``
-        ``[[2, 2]]``      monoterm slot symmetry of the Riemann tensor
-        ``[[1],[1]]``     vector*vector
-        ``[[2],[1],[1]]`` (antisymmetric tensor)*vector*vector
+        using a specific symmetry specified as follows:
+        ``(1)``         vector
+        ``(2)``         tensor with 2 symmetric indices
+        ``(-2)``        tensor with 2 antisymmetric indices
+        ``(2, -2)``     tensor with the first 2 indices commuting and the last 2 anticommuting
+        ``(1, 1, 1)``   tensor with 3 indices without any symmetry
 
         Additionally, the parameter ``covar`` indicates that the passed array
         corresponds to the covariance of the tensor it is intended to describe.
@@ -153,26 +158,23 @@ class Tensor(AbstractTensor, TensorHead):
         >>> from sympy import diag, symbols
         >>> from riccipy import Metric, Tensor, indices, expand_array
         >>> E1, E2, E3, B1, B2, B3 = symbols('E1:4 B1:4')
-        >>> em = [[0, -E1, -E2, -E3],
-                  [E1, 0, -B3, B2],
-                  [E2, B3, 0, -B1],
-                  [E3, -B2, B1, 0]]
+        >>> em = [[0, -E1, -E2, -E3], [E1, 0, -B3, B2], [E2, B3, 0, -B1], [E3, -B2, B1, 0]]
         >>> t, x, y, z = symbols('t x y z')
         >>> eta = Metric('eta', [t, x, y, z], diag(1, -1, -1, -1))
-        >>> F = Tensor('F', em, eta, symmetry=[[2]])
+        >>> F = Tensor('F', em, eta, symmetry=(-2,))
         >>> mu, nu = indices('mu nu', eta)
         >>> expr = F(mu, nu) + F(nu, mu)
         >>> expand_array(expr)
-        0
+        [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
         >>> expr = F(mu, nu) * F(-mu, -nu)
         >>> expand_array(expr)
-        2*B_1**2 + 2*B_2**2 + 2*B_3**2 - 2*E_1**2 - 2*E_2**2 - 2*E_3**2
+        2*B1**2 + 2*B2**2 + 2*B3**2 - 2*E1**2 - 2*E2**2 - 2*E3**2
         """
         array = Array(matrix)
-        sym = kwargs.pop("symmetry", array.rank() * [1])
+        sym = kwargs.pop("symmetry", array.rank() * (1,))
         sym = TensorSymmetry.direct_product(*sym)
         comm = kwargs.pop("comm", "general")
-        covar = tuple(kwargs.pop("covar", array.rank() * [1]))
+        covar = tuple(kwargs.pop("covar", array.rank() * (1,)))
         if len(covar) != array.rank():
             raise ValueError(
                 "covariance signature {} does not match tensor rank {}".format(
@@ -209,7 +211,7 @@ class Tensor(AbstractTensor, TensorHead):
 
         def dummy_name_gen(idxtype):
             # generate a generic index for the entry in replacement dictionary.
-            fmt = idxtype.dummy_name + '_%d'
+            fmt = idxtype.dummy_name + "_%d"
             n = count[idxtype]
             count[idxtype] += 1
             return fmt % n
@@ -223,6 +225,25 @@ class Tensor(AbstractTensor, TensorHead):
         return idxs
 
     def set_variables(self, sub_dict):
+        """
+        Use a dictionary to replace symbols/variables in a tensor.
+
+        Parameters
+        ----------
+        sub_dict : dict
+            Dictionary that maps symbols to expressions.
+
+        Examples
+        --------
+        >>> from sympy import Rational, diag, exp, sin, symbols
+        >>> from riccipy import Metric, indices
+        >>> t, r, th, ph, M = symbols('t r theta phi M', real=True)
+        >>> schwarzschild = diag(1 - 2 * M/r, 1/(1 - 2 * M/r), r ** 2, r ** 2 * sin(th) ** 2)
+        >>> g = Metric('g', [t, r, th, ph], schwarzschild)
+        >>> g.set_variables({M: Rational(1, 2)})
+        >>> g.as_array()
+        [[1 - 1/r, 0, 0, 0], [0, 1/(1 - 1/r), 0, 0], [0, 0, r**2, 0], [0, 0, 0, r**2*sin(theta)**2]]
+        """
         self._array = self._array.subs(sub_dict)
         idxs = self._dummy_idxs()
         self._repl[self(*idxs)] = self._array
@@ -239,14 +260,15 @@ class Tensor(AbstractTensor, TensorHead):
 
         Examples
         --------
-        >>> from sympy import diag, symbols, sin
+        >>> from sympy import Function, diag, exp, sin, symbols
         >>> from riccipy import Metric, indices
         >>> t, r, th, ph = symbols('t r theta phi')
-        >>> schwarzschild = diag(1-1/r, -1/(1-1/r), -r**2, -r**2*sin(th)**2)
-        >>> g = Metric('g', [t, r, th, ph], schwarzschild)
+        >>> al, be = symbols('alpha beta', cls=Function)
+        >>> spherical = diag(-exp(2 * al(r)), exp(2 * be(r)), r ** 2, r ** 2 * sin(th) ** 2)
+        >>> g = Metric('g', [t, r, th, ph], spherical)
         >>> mu, nu = indices('mu nu', g)
         >>> g.covariance_transform(mu, nu)
-        [[1/(1 - 1/r), 0, 0, 0], [0, 1 - 1/r, 0, 0], [0, 0, -1/r**2, 0], [0, 0, 0, -1/(r**2*sin(theta)**2)]]
+        [[-exp(-2*alpha(r)), 0, 0, 0], [0, exp(-2*beta(r)), 0, 0], [0, 0, r**(-2), 0], [0, 0, 0, 1/(r**2*sin(theta)**2)]]
         """
         array = self.as_array()
         for pos, idx in enumerate(indices):

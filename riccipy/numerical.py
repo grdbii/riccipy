@@ -4,7 +4,7 @@ from types import FunctionType
 
 import numpy as np
 
-from sympy import Array, lambdify
+from sympy import Array, lambdify, flatten
 from sympy.tensor.tensor import TensExpr
 
 from .tensor import expand_array
@@ -44,11 +44,12 @@ class NumericalArray(object):
 
     def _build_generator(self):
         shape = self._array.shape
-        ndarr = np.ndarray(shape, dtype=FunctionType)
+        elements = flatten(self._array)
+        ndarr = np.ndarray((len(elements),), dtype=FunctionType)
         lfunc = partial(lambdify, modules=self._modules)
-        generator = starmap(lfunc, [(self._vars, elem) for elem in self._array])
-        ndarr.put(range(len(self._array)), list(generator))
-        return ndarr
+        generator = starmap(lfunc, [(self._vars, elem) for elem in elements])
+        ndarr.put(range(len(elements)), list(generator))
+        return ndarr.reshape(shape)
 
     def __getitem__(self, key):
         return self._generator.__getitem__(key)
@@ -90,17 +91,20 @@ def lambdify_tensor(args, expr, idxs=None, **kwargs):
 
     Examples
     --------
+    >>> from sympy import diag, sin, symbols
+    >>> from riccipy import Metric, lambdify_tensor, indices
     >>> t, r, th, ph = symbols('t r theta phi', real=True)
     >>> schw = diag(1-1/r, -1/(1-1/r), -r**2, -r**2*sin(th)**2)
     >>> g = Metric('g', (t, r, th, ph), schw)
+    >>> mu, nu = indices('mu nu', g)
     >>> narr = lambdify_tensor((r, th), g(-mu,-nu))
     >>> narr(2, 0)
     array([[ 0.5,  0. ,  0. ,  0. ],
-            [ 0. , -2. ,  0. ,  0. ],
-            [ 0. ,  0. , -4. ,  0. ],
-            [ 0. ,  0. ,  0. , -0. ]])
+           [ 0. , -2. ,  0. ,  0. ],
+           [ 0. ,  0. , -4. ,  0. ],
+           [ 0. ,  0. ,  0. , -0. ]])
     >>> narr[0,0]
-    <function _lambdifygenerated(r, theta)>
+    <function _lambdifygenerated at 0x...>
     >>> narr[0,0](2, 0)
     0.5
     """
