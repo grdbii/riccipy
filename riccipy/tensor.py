@@ -269,7 +269,7 @@ class Tensor(AbstractTensor, TensorHead):
         >>> mu, nu = indices('mu nu', g)
         >>> g.covariance_transform(mu, nu)
         [[-exp(-2*alpha(r)), 0, 0, 0], [0, exp(-2*beta(r)), 0, 0], [0, 0, r**(-2), 0], [0, 0, 0, 1/(r**2*sin(theta)**2)]]
-        """
+        """  # noqa: E501
         array = self.as_array()
         for pos, idx in enumerate(indices):
             if idx.is_up ^ (self.covar[pos] > 0):
