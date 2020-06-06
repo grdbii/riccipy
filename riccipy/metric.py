@@ -1,6 +1,6 @@
 from collections import namedtuple
 
-from sympy import Array, Pow, Rational, S, ones, tensorproduct, zeros
+from sympy import Array, Pow, Rational, S, Symbol, ones, sympify, tensorproduct, zeros
 from sympy.tensor.tensor import TensorIndexType
 
 from .partial import PartialDerivative, CovariantHead
@@ -55,6 +55,8 @@ class Metric(AbstractTensor, TensorIndexType):
             raise ValueError(
                 "matrix must be square, received matrix of shape {}".format(array.shape)
             )
+        if isinstance(symbol, str):
+            symbol = Symbol(symbol)
         obj = TensorIndexType.__new__(
             cls,
             symbol,
@@ -65,8 +67,8 @@ class Metric(AbstractTensor, TensorIndexType):
         )
         obj = AbstractTensor.__new__(cls, obj, array)
         obj._metric = Tensor(obj.name, array, obj, covar=(-1, -1))
-        obj.coords = tuple(coords)
         obj._repl[obj] = array
+        obj._args = (symbol, coords, matrix)
         return obj
 
     def __getattr__(self, attr):
@@ -93,6 +95,26 @@ class Metric(AbstractTensor, TensorIndexType):
 
     def density(self, weight=S.One):
         return Pow(abs(self.determinant), Rational(weight, 2))
+
+    @property
+    def name(self):
+        return self.args[0].name
+
+    @property
+    def dummy_name(self):
+        return self.args[0].name
+
+    @property
+    def coords(self):
+        return self.args[1]
+
+    @property
+    def dim(self):
+        return sympify(len(self.args[1]))
+
+    @property
+    def eps_dim(self):
+        return sympify(len(self.args[1]))
 
     @property
     def metric(self):
