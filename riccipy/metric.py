@@ -10,6 +10,17 @@ from .tensor import AbstractTensor, Tensor, expand_array, indices
 class Metric(AbstractTensor, TensorIndexType):
     """
     Class representing a tensor that raises and lowers indices.
+
+    Examples
+    --------
+    >>> from sympy import diag, symbols
+    >>> from riccipy import Metric, indices, expand_array
+    >>> t, x, y, z = symbols('t x y z')
+    >>> eta = Metric('eta', [t, x, y, z], diag(1, -1, -1, -1))
+    >>> mu, nu = indices('mu nu', eta)
+    >>> expr = eta(mu, nu) * eta(-mu, -nu)
+    >>> expand_array(expr)
+    4
     """
 
     # This object allows for having the metric be represented by the
@@ -38,17 +49,6 @@ class Metric(AbstractTensor, TensorIndexType):
         matrix : (list, tuple, ~sympy.Matrix, ~sympy.Array)
             Matrix representation of the tensor to be used in substitution.
             Can be of any type that is acceptable by ~sympy.Array.
-
-        Examples
-        --------
-        >>> from sympy import diag, symbols
-        >>> from riccipy import Metric, indices, expand_array
-        >>> t, x, y, z = symbols('t x y z')
-        >>> eta = Metric('eta', [t, x, y, z], diag(1, -1, -1, -1))
-        >>> mu, nu = indices('mu nu', eta)
-        >>> expr = eta(mu, nu) * eta(-mu, -nu)
-        >>> expand_array(expr)
-        4
         """
         array = Array(matrix)
         if array.rank() != 2 or array.shape[0] != array.shape[1]:
@@ -136,9 +136,11 @@ class Metric(AbstractTensor, TensorIndexType):
     def christoffel(self):
         r"""
         Returns the Christoffel symbols using the formula:
-        \Gamma^\sigma_{\mu\nu} =
-        \frac{1}{2} g^{\sigma\rho} (\partial_\mu g_{\nu\rho} + \partial_\nu g_{\rho\mu} - \partial_\rho g_{\mu\nu})
-        """
+
+        .. math::
+            \Gamma^\sigma_{\mu\nu} =
+            \frac{1}{2} g^{\sigma\rho} (\partial_\mu g_{\nu\rho} + \partial_\nu g_{\rho\mu} - \partial_\rho g_{\mu\nu})
+        """  # noqa: E501
         if self._christoffel is None:
             mu, nu, si, rh = indices("mu nu sigma rho", self)
             d = self.partial
@@ -156,9 +158,11 @@ class Metric(AbstractTensor, TensorIndexType):
     def riemann(self):
         r"""
         Returns the Riemann curvature tensor using the formula:
-        R^\rho_{\sigma\mu\nu} =
-        \partial_\mu \Gamma^\rho_{\nu\sigma} - \partial_\nu \Gamma^\rho_{\mu\sigma}
-        + \Gamma^\rho_{\mu\lambda} \Gamma^\lambda_{\nu\sigma} - \Gamma^\rho_{\nu\lambda} \Gamma^\lambda_{\mu\sigma}
+
+        .. math::
+            R^\rho_{\sigma\mu\nu} =
+            \partial_\mu \Gamma^\rho_{\nu\sigma} - \partial_\nu \Gamma^\rho_{\mu\sigma}
+            + \Gamma^\rho_{\mu\lambda} \Gamma^\lambda_{\nu\sigma} - \Gamma^\rho_{\nu\lambda} \Gamma^\lambda_{\mu\sigma}
         """
         if self._riemann is None:
             mu, nu, si, rh, la = indices("mu nu sigma rho lambda", self)
@@ -180,7 +184,9 @@ class Metric(AbstractTensor, TensorIndexType):
     def ricci_tensor(self):
         r"""
         Returns the Ricci tensor using the formula:
-        R_{\mu\nu} = R^\sigma_{\mu\sigma\nu}
+
+        .. math::
+            R_{\mu\nu} = R^\sigma_{\mu\sigma\nu}
         """
         if self._ricci_tensor is None:
             mu, nu, si = indices("mu nu sigma", self)
@@ -193,7 +199,9 @@ class Metric(AbstractTensor, TensorIndexType):
     def ricci_scalar(self):
         r"""
         Returns the Ricci scalar using the formula:
-        R = R^\mu_\mu
+
+        .. math::
+            R = R^\mu_\mu
         """
         if self._ricci_scalar is None:
             mu, nu = indices("mu nu", self)
@@ -207,9 +215,11 @@ class Metric(AbstractTensor, TensorIndexType):
     def weyl(self):
         r"""
         Returns the Weyl conformal tensor using the formula:
-        C_{\rho\sigma\mu\nu} =
-        R_{\rho\sigma\mu\nu} - \frac{2}{(n - 2)} (g_{\rho[\mu} R_{\nu]\sigma} - g_{\sigma[\mu} R_{\nu]\rho})
-        + \frac{2}{(n - 1)(n - 2)} g_{\rho[\mu} g_{\nu]\sigma} R
+
+        .. math::
+            C_{\rho\sigma\mu\nu} =
+            R_{\rho\sigma\mu\nu} - \frac{2}{(n - 2)} (g_{\rho[\mu} R_{\nu]\sigma} - g_{\sigma[\mu} R_{\nu]\rho})
+            + \frac{2}{(n - 1)(n - 2)} g_{\rho[\mu} g_{\nu]\sigma} R
         """
         if self._weyl is None:
             n = self.dim
@@ -251,7 +261,9 @@ class Metric(AbstractTensor, TensorIndexType):
     def einstein(self):
         r"""
         Returns the Einstein tensor using the formula:
-        G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu}
+
+        .. math::
+            G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} R g_{\mu\nu}
         """
         if self._einstein is None:
             mu, nu = indices("mu nu", self)
