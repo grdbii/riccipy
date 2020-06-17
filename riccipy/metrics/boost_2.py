@@ -10,5 +10,5 @@ coords = symbols("t w x y", real=True)
 variables = ()
 functions = symbols("alpha beta", cls=Function)
 t, w, x, y = coords
-al, be = functions
-metric = diag(-be(w) ** 2 * sinh(y) ** 2, 1, al(w) ** 2, be(w) ** 2)
+alpha, beta = functions
+metric = diag(-beta(w) ** 2 * sinh(y) ** 2, 1, alpha(w) ** 2, beta(w) ** 2)

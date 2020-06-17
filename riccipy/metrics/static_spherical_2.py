@@ -13,10 +13,10 @@ coords = symbols("t r theta phi", real=True)
 variables = ()
 functions = symbols("alpha beta", cls=Function)
 t, r, th, ph = coords
-al, be = functions
+alpha, beta = functions
 metric = diag(
-    -exp(2 * al(r)),
-    exp(2 * be(r)),
-    exp(2 * be(r)) * r ** 2,
-    exp(2 * be(r)) * r ** 2 * sin(th) ** 2,
+    -exp(2 * alpha(r)),
+    exp(2 * beta(r)),
+    exp(2 * beta(r)) * r ** 2,
+    exp(2 * beta(r)) * r ** 2 * sin(th) ** 2,
 )

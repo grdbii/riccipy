@@ -8,5 +8,5 @@ coords = symbols("t x y z", real=True)
 variables = ()
 functions = symbols("alpha", cls=Function)
 t, x, y, z = coords
-al = functions
-metric = diag(1, exp(-2 * al(t)), exp(al(t)), exp(al(t)))
+alpha = functions
+metric = diag(1, exp(-2 * alpha(t)), exp(alpha(t)), exp(alpha(t)))
